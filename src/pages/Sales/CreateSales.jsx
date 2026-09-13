@@ -648,7 +648,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       message += `------------------------------\n`;
       message += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
       message += `Visit again for more unique designs!\n`;
-      message += `*Malka - Be Unique, Be Malka*`;
+      message += `*Malka - Your Complete Destination For Timeless Style*`;
 
       const phone = showReceipt.client.phone ? showReceipt.client.phone.replace(/[^0-9]/g, '') : '';
       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
@@ -675,7 +675,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       message += `------------------------------\n`;
       message += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
       message += `Visit again for more unique designs!\n`;
-      message += `*Malka - Be Unique, Be Malka*`;
+      message += `*Malka - Your Complete Destination For Timeless Style*`;
 
       const phone = showReceipt.client.phone ? showReceipt.client.phone.replace(/[^0-9]/g, '') : '';
       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
@@ -742,7 +742,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
     container.innerHTML = `
       <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px dashed #000; padding-bottom: 10px;">
         <h2 style="margin: 0; font-size: 20px; text-transform: uppercase;">Malka</h2>
-        <p style="margin: 2px 0; font-size: 10px;">Be Unique, Be Malka</p>
+        <p style="margin: 2px 0; font-size: 10px;">Your Complete Destination For Timeless Style</p>
         <p style="margin: 2px 0; font-size: 10px;">Ph : 8606154015</p>
       </div>
       <div style="margin-bottom: 15px; font-size: 11px;">
@@ -1169,7 +1169,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                 <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
                   <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
                   <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
-                  <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
+                  <p className="text-[10px] font-medium">Your Complete Destination For Timeless Style</p>
                   <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
                   <div className="mt-2 text-gray-500">
                     <p className="!text-[10px]">Order ID: {showReceipt.saleId}</p>

@@ -242,7 +242,7 @@ function PublicReceipt({ billId, onClear }) {
                   <img src="/logo-black.png" alt="Logo" style={{ width: '80px', height: '85px', objectFit: 'contain' }} />
                   <div>
                     <h1 style={{ margin: 0, fontSize: '32px', color: '#111827', fontWeight: '800', letterSpacing: '-0.5px' }}>Malka</h1>
-                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Be Unique, Be Malka</p>
+                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Your Complete Destination For Timeless Style</p>
                   </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -322,7 +322,7 @@ function PublicReceipt({ billId, onClear }) {
           <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
             <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
             <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
-            <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
+            <p className="text-[10px] font-medium">Your Complete Destination For Timeless Style</p>
             <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
             <div className="mt-2 text-gray-500">
               <p className='!text-[10px]'>Order ID: {sale.saleId}</p>

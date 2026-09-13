@@ -37,7 +37,7 @@ export const generateReceiptHtmlString = (saleData) => {
       <div style="text-align: center; margin-bottom: 16px; border-bottom: 2px dashed #d1d5db; padding-bottom: 16px;">
         <img src="/logo-black.png" style="width: 100px; height: auto; margin: 0 auto 16px auto; display: block; object-fit: contain;" />
         <h2 style="margin: 0; font-size: 22px; text-transform: uppercase; font-weight: 900; letter-spacing: -0.5px; line-height: 1;">Malka</h2>
-        <p style="margin: 4px 0 0 0; font-size: 10px; font-weight: 600;">Be Unique, Be Malka</p>
+        <p style="margin: 4px 0 0 0; font-size: 10px; font-weight: 600;">Your Complete Destination For Timeless Style</p>
         <p style="margin: 2px 0 0 0; font-size: 12px;">Ph : 8606154015</p>
         <div style="margin-top: 8px; color: #6b7280; font-size: 10px;">
           <p style="margin: 2px 0;">Order ID: ${saleData.saleId}</p>

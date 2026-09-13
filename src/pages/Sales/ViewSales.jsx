@@ -439,7 +439,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                 <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
                   <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
                   <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
-                  <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
+                  <p className="text-[10px] font-medium">Your Complete Destination For Timeless Style</p>
                   <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
                   <div className="mt-2 text-gray-500">
                     <p className='!text-[10px]'>Order ID: {viewSale.saleId}</p>
@@ -619,7 +619,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                       msg += `------------------------------\n`;
                       msg += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
                       msg += `Visit again for more unique designs!\n`;
-                      msg += `*Malka - Be Unique, Be Malka*`;
+                      msg += `*Malka - Your Complete Destination For Timeless Style*`;
 
                       const phone = viewSale.client?.phone ? viewSale.client.phone.replace(/[^0-9]/g, '') : '';
                       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
@@ -646,7 +646,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                       msg += `------------------------------\n`;
                       msg += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
                       msg += `Visit again for more unique designs!\n`;
-                      msg += `*Malka - Be Unique, Be Malka*`;
+                      msg += `*Malka - Your Complete Destination For Timeless Style*`;
 
                       const phone = viewSale.client?.phone ? viewSale.client.phone.replace(/[^0-9]/g, '') : '';
                       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
