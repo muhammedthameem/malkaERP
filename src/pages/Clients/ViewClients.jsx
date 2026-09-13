@@ -127,8 +127,8 @@ function ViewClientsPage({ themeStyle, setCurrentPage, setSelectedClient, setCli
         <div style="display: flex; align-items: center; gap: 15px;">
           <img src="/logo-black.png" style="width: 56px; height: 60px; object-fit: contain;" />
           <div>
-            <h1 style="font-size: 24px; font-weight: 800; color: #8e4431; margin: 0; letter-spacing: -0.5px;">CLASSY COUTURE</h1>
-            <p style="font-size: 10px; color: #6b7280; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px;">Be Unique, Be Classy</p>
+            <h1 style="font-size: 24px; font-weight: 800; color: #8e4431; margin: 0; letter-spacing: -0.5px;">MALKA</h1>
+            <p style="font-size: 10px; color: #6b7280; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px;">Be Unique, Be Malka</p>
             <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0; text-transform: uppercase; letter-spacing: 1px;">Client Measurement Record</p>
           </div>
         </div>

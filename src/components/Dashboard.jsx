@@ -412,7 +412,7 @@ function Dashboard({
 
   const loggedInUserInList = users.find(u => (u.id || u.email) === (user?.id || user?.email))
   const currentUserName = loggedInUserInList ? loggedInUserInList.name : (user?.name || 'User')
-  const currentUserEmail = loggedInUserInList ? loggedInUserInList.email : (user?.email || 'admin@classy.com')
+  const currentUserEmail = loggedInUserInList ? loggedInUserInList.email : (user?.email || 'admin@malka.com')
 
   // Live Data Calculations
   const allOrders = orders
@@ -999,7 +999,7 @@ function Dashboard({
                 <p className="text-xs uppercase tracking-[0.28em] text-[var(--accent)] font-semibold">
                   Boutique
                 </p>
-                <h2 className="truncate text-lg font-semibold text-[var(--text)]">Classy ERP</h2>
+                <h2 className="truncate text-lg font-semibold text-[var(--text)]">Malka ERP</h2>
               </div>
             )}
           </div>
@@ -1426,7 +1426,7 @@ function Dashboard({
                     ) : (
                       <>
                         <span className="block text-sm font-semibold truncate max-w-[100px]">{currentUserName}</span>
-                        <span className="block text-xs text-[var(--muted)]">{user?.email || 'admin@classy.com'}</span>
+                        <span className="block text-xs text-[var(--muted)]">{user?.email || 'admin@malka.com'}</span>
                       </>
                     )}
                   </span>
@@ -1442,7 +1442,7 @@ function Dashboard({
                         </span>
                         <div>
                           <p className="text-sm font-semibold truncate">{currentUserName}</p>
-                          <p className="text-xs text-[var(--muted)]">{user?.email || 'admin@classy.com'}</p>
+                          <p className="text-xs text-[var(--muted)]">{user?.email || 'admin@malka.com'}</p>
                         </div>
                       </div>
                     </div>

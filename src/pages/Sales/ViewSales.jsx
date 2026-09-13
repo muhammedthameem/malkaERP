@@ -295,7 +295,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                   </td>
                   <td className="text-right">
                     <p className="text-lg font-black text-[var(--accent)]">
-                      ₹{sale.items.reduce((sum, item) => sum + ((parseFloat(item.price) || parseFloat(item.rate) || 0) * (item.qty || 0)) - (parseFloat(item.discount) || 0), 0).toFixed(2)}
+                      â‚¹{sale.items.reduce((sum, item) => sum + ((parseFloat(item.price) || parseFloat(item.rate) || 0) * (item.qty || 0)) - (parseFloat(item.discount) || 0), 0).toFixed(2)}
                     </p>
                     {sale.paymentMode && (
                       <span className="inline-block mt-1 rounded bg-[var(--soft)] px-1.5 py-0.5 text-[9px] font-bold text-[var(--muted)] uppercase">{sale.paymentMode}</span>
@@ -346,7 +346,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                     </div>
                     <div className="flex items-center gap-3 shrink-0">
                       <div className="flex flex-col items-end gap-1">
-                        <span className="font-black text-emerald-600 text-sm">₹{totalAmount.toFixed(2)}</span>
+                        <span className="font-black text-emerald-600 text-sm">â‚¹{totalAmount.toFixed(2)}</span>
                         {sale.paymentMode && (
                           <span className="text-[9px] font-bold text-[var(--muted)] bg-[var(--soft)] px-1.5 py-0.5 rounded uppercase">{sale.paymentMode}</span>
                         )}
@@ -364,7 +364,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                           {sale.items.map((item, idx) => (
                             <div key={idx} className="flex justify-between items-center text-xs p-2 rounded-lg bg-[var(--surface)] border border-[var(--border)]">
                               <span className="font-semibold text-[var(--text)]">{item.qty}x {item.productName}</span>
-                              <span className="font-bold text-[var(--accent)]">₹{((parseFloat(item.price) || parseFloat(item.rate) || 0) * (item.qty || 0)).toFixed(2)}</span>
+                              <span className="font-bold text-[var(--accent)]">â‚¹{((parseFloat(item.price) || parseFloat(item.rate) || 0) * (item.qty || 0)).toFixed(2)}</span>
                             </div>
                           ))}
                         </div>
@@ -420,7 +420,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                 <img src="/logo-black.png" alt="Logo" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-[var(--text)]">Sale Details</h3>
-                  <p className="text-xs sm:text-sm text-[var(--muted)]">{viewSale.saleId} • {new Date(viewSale.timestamp).toDateString() === new Date().toDateString() ? new Date(viewSale.timestamp).toLocaleString() : new Date(viewSale.timestamp).toLocaleDateString()}</p>
+                  <p className="text-xs sm:text-sm text-[var(--muted)]">{viewSale.saleId} â€¢ {new Date(viewSale.timestamp).toDateString() === new Date().toDateString() ? new Date(viewSale.timestamp).toLocaleString() : new Date(viewSale.timestamp).toLocaleDateString()}</p>
                 </div>
               </div>
               <button 
@@ -438,8 +438,8 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                 <div id="printable-bill-view" className="mb-4 sm:mb-8 bg-white p-4 text-black shadow-inner overflow-hidden mx-auto shrink-0" style={{ width: '97mm', minHeight: '120mm', fontFamily: 'monospace' }}>
                 <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
                   <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
-                  <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Classy Couture</h3>
-                  <p className="text-[10px] font-medium">Be Unique, Be Classy</p>
+                  <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
+                  <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
                   <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
                   <div className="mt-2 text-gray-500">
                     <p className='!text-[10px]'>Order ID: {viewSale.saleId}</p>
@@ -457,7 +457,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                     <tr className="border-b border-dashed border-gray-300 text-left">
                       <th className="py-1 min-w-[100px] pr-2">Item</th>
                       <th className="py-1 text-center px-3">Qty</th>
-                      <th className="py-1 text-right px-3 whitespace-nowrap">Disc (₹/%)</th>
+                      <th className="py-1 text-right px-3 whitespace-nowrap">Disc (â‚¹/%)</th>
                       <th className="py-1 text-right pl-3 whitespace-nowrap">Total</th>
                     </tr>
                   </thead>
@@ -467,15 +467,15 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                         <td className="py-2 pr-2">
                           <p className="font-bold">{item.productName.replace(/\s*\(Order #[^)]+\)/g, '')}</p>
                           <div className="flex flex-col mt-0.5">
-                            <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: ₹{item.price || item.rate}</p>
+                            <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: â‚¹{item.price || item.rate}</p>
                           </div>
                         </td>
                         <td className="py-2 text-center px-3">{item.qty}</td>
                         <td className="py-2 text-right px-3">
-                          {item.rowTotal !== undefined ? '₹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
+                          {item.rowTotal !== undefined ? 'â‚¹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
                         </td>
                         <td className="py-2 text-right pl-3 font-bold">
-                          ₹{(item.rowTotal !== undefined 
+                          â‚¹{(item.rowTotal !== undefined 
                             ? item.rowTotal 
                             : (item.qty * (item.price || item.rate)) * (1 - (item.discount || 0) / 100)).toFixed(2)}
                         </td>
@@ -487,7 +487,7 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                 <div className="border-t-2 border-dashed border-gray-300 pt-3 space-y-1">
                   <div className="flex justify-between text-sm font-black">
                     <span>Grand Total</span>
-                    <span>₹{((viewSale.items || []).reduce((s, i) => s + ((i.price || i.rate) * i.qty), 0) - (viewSale.items?.reduce((s, i) => s + (parseFloat(i.discount) || 0), 0) || 0)).toFixed(2)}</span>
+                    <span>â‚¹{((viewSale.items || []).reduce((s, i) => s + ((i.price || i.rate) * i.qty), 0) - (viewSale.items?.reduce((s, i) => s + (parseFloat(i.discount) || 0), 0) || 0)).toFixed(2)}</span>
                   </div>
                 </div>
 
@@ -597,12 +597,12 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                         .from('receipts')
                         .getPublicUrl(fileName);
 
-                      const appUrlObj = new URL('https://erp.classycouture.co.in');
+                      const appUrlObj = new URL('https://erp.malka.co.in');
                       appUrlObj.searchParams.set('bill', encryptId(viewSale.saleId));
                       const finalAppUrl = appUrlObj.toString();
 
-                      const greeting = "Thank you for choosing Classy Couture! Your elegance is our priority.";
-                      let msg = `*✨ INVOICE: ${viewSale.saleId} ✨*\n`;
+                      const greeting = "Thank you for choosing Malka! Your elegance is our priority.";
+                      let msg = `*âœ¨ INVOICE: ${viewSale.saleId} âœ¨*\n`;
                       msg += `------------------------------\n`;
                       msg += `Hello *${viewSale.client?.name || 'Guest'}*,\n`;
                       msg += `${greeting}\n\n`;
@@ -611,27 +611,27 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                       viewSale.items.forEach(item => {
                         const itemPrice = parseFloat(item.price || 0).toFixed(2);
                         const clientSuffix = item.clientName ? ` (Client: ${item.clientName})` : '';
-                        msg += `* ${item.productName}${clientSuffix} (x${item.qty}) - ₹${itemPrice}\n`;
+                        msg += `* ${item.productName}${clientSuffix} (x${item.qty}) - â‚¹${itemPrice}\n`;
                       });
 
                       const grandTotal = parseFloat(viewSale.total || 0).toFixed(2);
-                      msg += `\nGrand Total: *₹${grandTotal}*\n`;
+                      msg += `\nGrand Total: *â‚¹${grandTotal}*\n`;
                       msg += `------------------------------\n`;
-                      msg += `📄 *View Digital Receipt:*\n${finalAppUrl}\n\n`;
+                      msg += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
                       msg += `Visit again for more unique designs!\n`;
-                      msg += `*Classy Couture - Be Unique, Be Classy*`;
+                      msg += `*Malka - Be Unique, Be Malka*`;
 
                       const phone = viewSale.client?.phone ? viewSale.client.phone.replace(/[^0-9]/g, '') : '';
                       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
                       window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(msg)}`, '_blank');
                     } catch (err) {
                       console.error('WhatsApp Share Error:', err);
-                      const appUrlObj = new URL('https://erp.classycouture.co.in');
+                      const appUrlObj = new URL('https://erp.malka.co.in');
                       appUrlObj.searchParams.set('bill', encryptId(viewSale.saleId));
                       const finalAppUrl = appUrlObj.toString();
                       // Fallback: Send message WITH APP link even if PDF upload fails
-                      const greeting = "Thank you for choosing Classy Couture! Your elegance is our priority.";
-                      let msg = `*✨ INVOICE: ${viewSale.saleId} ✨*\n`;
+                      const greeting = "Thank you for choosing Malka! Your elegance is our priority.";
+                      let msg = `*âœ¨ INVOICE: ${viewSale.saleId} âœ¨*\n`;
                       msg += `------------------------------\n`;
                       msg += `Hello *${viewSale.client?.name || 'Guest'}*,\n`;
                       msg += `${greeting}\n\n`;
@@ -639,14 +639,14 @@ function ViewSalesPage({ themeStyle, setCurrentPage, showGlobalToast, currentUse
                       viewSale.items.forEach(item => {
                         const itemPrice = parseFloat(item.price || 0).toFixed(2);
                         const clientSuffix = item.clientName ? ` (Client: ${item.clientName})` : '';
-                        msg += `* ${item.productName}${clientSuffix} (x${item.qty}) - ₹${itemPrice}\n`;
+                        msg += `* ${item.productName}${clientSuffix} (x${item.qty}) - â‚¹${itemPrice}\n`;
                       });
                       const grandTotalFallback = parseFloat(viewSale.total || 0).toFixed(2);
-                      msg += `\nGrand Total: *₹${grandTotalFallback}*\n`;
+                      msg += `\nGrand Total: *â‚¹${grandTotalFallback}*\n`;
                       msg += `------------------------------\n`;
-                      msg += `📄 *View Digital Receipt:*\n${finalAppUrl}\n\n`;
+                      msg += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
                       msg += `Visit again for more unique designs!\n`;
-                      msg += `*Classy Couture - Be Unique, Be Classy*`;
+                      msg += `*Malka - Be Unique, Be Malka*`;
 
                       const phone = viewSale.client?.phone ? viewSale.client.phone.replace(/[^0-9]/g, '') : '';
                       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;

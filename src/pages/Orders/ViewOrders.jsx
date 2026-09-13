@@ -245,7 +245,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
         formattedPhone = '91' + formattedPhone;
       }
 
-      const defaultMsg = `Hi ${changedOrder.clientName || 'Customer'}\nYour ${changedOrder.product || 'Item'} (#${changedOrder.orderId || changedOrder.id}) is ready for delivery. Please collect it.\n\nThank you,\nClassy Couture`;
+      const defaultMsg = `Hi ${changedOrder.clientName || 'Customer'}\nYour ${changedOrder.product || 'Item'} (#${changedOrder.orderId || changedOrder.id}) is ready for delivery. Please collect it.\n\nThank you,\nMalka`;
 
       setWaData({
         phone: formattedPhone,
@@ -662,8 +662,8 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
       let formattedPhone = String(phoneToUse).replace(/\D/g, '');
       if (formattedPhone.length === 10) formattedPhone = '91' + formattedPhone;
 
-      const receiptUrl = `https://erp.classycouture.co.in/?bill=${encryptId(viewOrder.id)}`;
-      const msg = `Hello ${viewOrder.clientName || 'Valued Client'},\n\nThank you for choosing Classy Couture! Your order receipt has been generated.\n\nYou can view and download your digital receipt here:\n${receiptUrl}\n\nPlease let us know if you have any questions!`;
+      const receiptUrl = `https://erp.malka.co.in/?bill=${encryptId(viewOrder.id)}`;
+      const msg = `Hello ${viewOrder.clientName || 'Valued Client'},\n\nThank you for choosing Malka! Your order receipt has been generated.\n\nYou can view and download your digital receipt here:\n${receiptUrl}\n\nPlease let us know if you have any questions!`;
 
       const whatsappUrl = formattedPhone
         ? `https://wa.me/${formattedPhone}?text=${encodeURIComponent(msg)}`
@@ -702,7 +702,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
               <img src="/logo-black.png" alt="Logo" className="w-16 h-16 object-contain" />
               <div>
                 <h2 className="text-2xl font-semibold flex items-center gap-2">Order #{viewOrder.id}</h2>
-                <p className="text-sm text-[var(--muted)]">Classy Couture</p>
+                <p className="text-sm text-[var(--muted)]">Malka</p>
               </div>
             </div>
 
@@ -737,10 +737,10 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
               <div className="bg-[var(--surface)] border border-[var(--border)] rounded-2xl p-4 flex flex-col justify-center">
                 <p className="text-xs font-medium text-[var(--muted)] mb-1">Product Details</p>
                 <p className="font-semibold text-[var(--text)] text-sm">{viewOrder.product}</p>
-                <p className="text-[13px] text-[var(--muted)] mt-0.5">{viewOrder.orderType} <span className="opacity-40 mx-1.5">•</span> ₹{viewOrder.price}</p>
+                <p className="text-[13px] text-[var(--muted)] mt-0.5">{viewOrder.orderType} <span className="opacity-40 mx-1.5">â€¢</span> â‚¹{viewOrder.price}</p>
 
                 <div className="flex flex-wrap items-center gap-3 mt-2.5">
-                  {viewOrder.advance > 0 && <span className="text-[11px] text-[var(--muted)] bg-[var(--surface-strong)] px-2 py-0.5 rounded-md border border-[var(--border)]">Adv: <span className="text-emerald-600 font-medium">₹{viewOrder.advance}</span> <span className="opacity-40 mx-1">•</span> Bal: <span className="font-medium">₹{(parseFloat(viewOrder.price || 0) - parseFloat(viewOrder.advance || 0)).toFixed(2)}</span></span>}
+                  {viewOrder.advance > 0 && <span className="text-[11px] text-[var(--muted)] bg-[var(--surface-strong)] px-2 py-0.5 rounded-md border border-[var(--border)]">Adv: <span className="text-emerald-600 font-medium">â‚¹{viewOrder.advance}</span> <span className="opacity-40 mx-1">â€¢</span> Bal: <span className="font-medium">â‚¹{(parseFloat(viewOrder.price || 0) - parseFloat(viewOrder.advance || 0)).toFixed(2)}</span></span>}
                   {viewOrder.size && <span className="text-[11px] text-[var(--muted)] bg-[var(--surface-strong)] px-2 py-0.5 rounded-md border border-[var(--border)]">Qty: <span className="font-medium text-[var(--text)]">{viewOrder.size}</span></span>}
                   <span className={`text-[11px] font-medium px-2 py-0.5 rounded-md border border-[var(--border)] ${
                     viewOrder.priority === 'High' ? 'bg-red-50 text-red-600 border-red-200' :
@@ -761,13 +761,13 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                       {viewOrder.internalItems.map((item, idx) => (
                         <div key={idx} className="flex justify-between items-center">
                           <span>{item.quantity}x {item.productName}</span>
-                          <span className="text-[var(--text)] font-medium">₹{(item.totalPrice || 0).toFixed(2)}</span>
+                          <span className="text-[var(--text)] font-medium">â‚¹{(item.totalPrice || 0).toFixed(2)}</span>
                         </div>
                       ))}
                     </div>
                     <div className="flex justify-between items-center mt-2.5 pl-3 font-medium text-[var(--text)]">
                       <span>Total Material</span>
-                      <span>₹{viewOrder.internalItems.reduce((sum, i) => sum + (i.totalPrice || 0), 0).toFixed(2)}</span>
+                      <span>â‚¹{viewOrder.internalItems.reduce((sum, i) => sum + (i.totalPrice || 0), 0).toFixed(2)}</span>
                     </div>
                   </div>
                 )}
@@ -969,8 +969,8 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                   <img src="/logo-black.png" alt="Logo" style={{ width: '80px', height: '85px', objectFit: 'contain' }} />
                   <div>
-                    <h1 style={{ margin: 0, fontSize: '32px', color: '#111827', fontWeight: '800', letterSpacing: '-0.5px' }}>Classy Couture</h1>
-                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Be Unique, Be Classy</p>
+                    <h1 style={{ margin: 0, fontSize: '32px', color: '#111827', fontWeight: '800', letterSpacing: '-0.5px' }}>Malka</h1>
+                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Be Unique, Be Malka</p>
 
                   </div>
                 </div>
@@ -1010,7 +1010,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #e5e7eb', fontSize: '16px', fontWeight: '600', color: '#111827' }}>{viewOrder.product}</td>
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #e5e7eb', fontSize: '15px', color: '#4b5563' }}>{viewOrder.orderType || '-'}</td>
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #e5e7eb', fontSize: '15px', color: '#4b5563', textAlign: 'center' }}>{viewOrder.size || '1'}</td>
-                      <td style={{ padding: '20px 15px', borderBottom: '1px solid #e5e7eb', fontSize: '16px', fontWeight: '600', color: '#111827', textAlign: 'right' }}>₹{parseFloat(viewOrder.price || 0).toFixed(2)}</td>
+                      <td style={{ padding: '20px 15px', borderBottom: '1px solid #e5e7eb', fontSize: '16px', fontWeight: '600', color: '#111827', textAlign: 'right' }}>â‚¹{parseFloat(viewOrder.price || 0).toFixed(2)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1021,24 +1021,24 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                 <div style={{ width: '380px', padding: '25px 15px 0 15px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '16px' }}>
                     <span style={{ color: '#4b5563' }}>Subtotal:</span>
-                    <span style={{ fontWeight: '600', color: '#111827' }}>₹{parseFloat(viewOrder.price || 0).toFixed(2)}</span>
+                    <span style={{ fontWeight: '600', color: '#111827' }}>â‚¹{parseFloat(viewOrder.price || 0).toFixed(2)}</span>
                   </div>
                   {viewOrder.advance > 0 && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '16px' }}>
                       <span style={{ color: '#4b5563' }}>Advance Paid:</span>
-                      <span style={{ fontWeight: '600', color: '#059669' }}>- ₹{parseFloat(viewOrder.advance || 0).toFixed(2)}</span>
+                      <span style={{ fontWeight: '600', color: '#059669' }}>- â‚¹{parseFloat(viewOrder.advance || 0).toFixed(2)}</span>
                     </div>
                   )}
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', paddingTop: '20px', borderTop: '2px solid #111827', fontSize: '22px' }}>
                     <span style={{ fontWeight: '800', color: '#111827' }}>Balance Due:</span>
-                    <span style={{ fontWeight: '800', color: '#111827' }}>₹{(parseFloat(viewOrder.price || 0) - parseFloat(viewOrder.advance || 0)).toFixed(2)}</span>
+                    <span style={{ fontWeight: '800', color: '#111827' }}>â‚¹{(parseFloat(viewOrder.price || 0) - parseFloat(viewOrder.advance || 0)).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
               {/* Footer */}
               <div style={{ textAlign: 'center', borderTop: '2px solid #f3f4f6', paddingTop: '30px', color: '#6b7280' }}>
-                <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: '600', color: '#111827' }}>Thank you for choosing Classy Couture!</p>
+                <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: '600', color: '#111827' }}>Thank you for choosing Malka!</p>
                 <p style={{ margin: 0, fontSize: '14px' }}>If you have any questions concerning this invoice, please contact us.</p>
                 <p style={{ margin: '20px 0 0 0', fontSize: '12px', color: '#9ca3af', fontStyle: 'italic' }}>This is a computer-generated document and does not require a signature.</p>
               </div>
@@ -1160,7 +1160,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                     {editOrder.internalItems.map((item, idx) => (
                       <div key={idx} className="flex justify-between items-center text-[11px] bg-[var(--surface)] p-2 rounded-lg border border-[var(--border)]">
                         <span className="font-semibold text-[var(--text)] truncate mr-2">{item.productName} <span className="text-[var(--muted)] font-normal">(x{item.quantity})</span></span>
-                        <span className="font-bold text-[var(--accent)] whitespace-nowrap">₹{(item.totalPrice || 0).toFixed(2)}</span>
+                        <span className="font-bold text-[var(--accent)] whitespace-nowrap">â‚¹{(item.totalPrice || 0).toFixed(2)}</span>
                       </div>
                     ))}
                   </div>
@@ -1670,7 +1670,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                     <div className="flex items-center gap-1">
                       {header.label}
                       <span className={`transition-opacity ${sortConfig.key === header.key ? 'opacity-100' : 'opacity-20 group-hover:opacity-100'}`}>
-                        {sortConfig.key === header.key && sortConfig.direction === 'asc' ? '↑' : '↓'}
+                        {sortConfig.key === header.key && sortConfig.direction === 'asc' ? 'â†‘' : 'â†“'}
                       </span>
                     </div>
                   </th>
@@ -1689,7 +1689,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                   <div className="flex items-center gap-1">
                     Dates
                     <span className={`transition-opacity ${sortConfig.key === 'deliveryDate' ? 'opacity-100' : 'opacity-20 group-hover:opacity-100'}`}>
-                      {sortConfig.key === 'deliveryDate' && sortConfig.direction === 'asc' ? '↑' : '↓'}
+                      {sortConfig.key === 'deliveryDate' && sortConfig.direction === 'asc' ? 'â†‘' : 'â†“'}
                     </span>
                   </div>
                 </th>
@@ -1804,11 +1804,11 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                       <div className="flex flex-col gap-1 mt-1">
                         <div className="flex gap-2 items-center text-xs">
                           <span className="rounded bg-[var(--soft)] px-1.5 py-0.5 text-[var(--muted)]">{order.orderType}</span>
-                          <span className="font-semibold text-[var(--accent)]">₹{order.price}</span>
+                          <span className="font-semibold text-[var(--accent)]">â‚¹{order.price}</span>
                         </div>
                         {order.advance > 0 && (
                           <div className="text-[10px] font-semibold text-green-600">
-                            Adv: ₹{order.advance} • Bal: ₹{(parseFloat(order.price || 0) - parseFloat(order.advance || 0)).toFixed(2)}
+                            Adv: â‚¹{order.advance} â€¢ Bal: â‚¹{(parseFloat(order.price || 0) - parseFloat(order.advance || 0)).toFixed(2)}
                           </div>
                         )}
                       </div>
@@ -2196,12 +2196,12 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                         <div className="mt-1 flex flex-col gap-1 bg-[var(--surface)] p-2 rounded-lg border border-[var(--border)]/30">
                           <div className="flex justify-between items-center">
                             <span className="text-[10px] text-[var(--muted)] font-medium">Total Price</span>
-                            <span className="font-bold text-[var(--accent)] text-sm">₹{order.price}</span>
+                            <span className="font-bold text-[var(--accent)] text-sm">â‚¹{order.price}</span>
                           </div>
                           {order.advance > 0 && (
                             <div className="flex justify-between items-center border-t border-[var(--border)]/50 pt-1 mt-0.5">
-                              <span className="text-[9px] text-[var(--muted)]">Adv: ₹{order.advance}</span>
-                              <span className="text-[10px] font-bold text-green-600">Bal: ₹{(parseFloat(order.price || 0) - parseFloat(order.advance || 0)).toFixed(2)}</span>
+                              <span className="text-[9px] text-[var(--muted)]">Adv: â‚¹{order.advance}</span>
+                              <span className="text-[10px] font-bold text-green-600">Bal: â‚¹{(parseFloat(order.price || 0) - parseFloat(order.advance || 0)).toFixed(2)}</span>
                             </div>
                           )}
                         </div>
@@ -2340,7 +2340,7 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                   <button type="button" onClick={(e) => { e.stopPropagation(); setOpenStagePopoverId(null); }} className="p-1.5 rounded-full bg-[var(--soft)] text-[var(--muted)] hover:text-[var(--text)] transition"><X size={18}/></button>
                 </div>
                 <p className="text-[13px] text-[var(--muted)] mt-0.5 truncate pr-4 font-medium">
-                  {order.clientName} <span className="opacity-50 mx-1">•</span> #{order.id}
+                  {order.clientName} <span className="opacity-50 mx-1">â€¢</span> #{order.id}
                 </p>
               </div>
               <div className="flex flex-col gap-2 mt-1">

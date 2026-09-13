@@ -37,7 +37,7 @@ function PwaUpdateModal() {
         </h2>
         
         <p className="text-sm font-medium text-white/70 mb-8 leading-relaxed">
-          A new version of ClassyERP is ready with new features like background Push Notifications. Update now to get the best experience!
+          A new version of MalkaERP is ready with new features like background Push Notifications. Update now to get the best experience!
         </p>
 
         <button

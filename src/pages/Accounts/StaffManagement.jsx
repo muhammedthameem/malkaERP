@@ -297,7 +297,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
         // Open WhatsApp
         const phone = staff.phone.replace(/\D/g, '');
         if (phone) {
-          const appUrlObj = new URL('https://erp.classycouture.co.in');
+          const appUrlObj = new URL('https://erp.malka.co.in');
           appUrlObj.searchParams.set('payslip', encryptId(fileName));
           const finalAppUrl = appUrlObj.toString();
 
@@ -308,9 +308,9 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
 
           let text = `Hello *${staff.name}*,\n\n`;
           text += `Your payslip for *${periodStr}* has been generated.\n\n`;
-          text += `Total Paid: *₹${(parseFloat(payslipData.amount || 0) + parseFloat(payslipData.overtime || 0)).toLocaleString()}*\n\n`;
-          text += `📄 *View & Download Digital Payslip:*\n${finalAppUrl}\n\n`;
-          text += `*Classy Couture*`;
+          text += `Total Paid: *â‚¹${(parseFloat(payslipData.amount || 0) + parseFloat(payslipData.overtime || 0)).toLocaleString()}*\n\n`;
+          text += `ðŸ“„ *View & Download Digital Payslip:*\n${finalAppUrl}\n\n`;
+          text += `*Malka*`;
 
           window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(text)}`, '_blank');
         } else {
@@ -528,7 +528,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                 <p className="mt-1 text-[var(--muted)] text-sm">Showing all salary and overtime records for <span className="font-bold text-[var(--text)]">{ledgerStaff.name}</span>.</p>
                 {ledgerStaff.balanceDue && parseFloat(ledgerStaff.balanceDue) !== 0 && (
                   <p className="mt-3 text-sm font-bold text-red-600 bg-red-50 inline-block px-3 py-1 rounded-full border border-red-200">
-                    Balance Payment Due: ₹{parseFloat(ledgerStaff.balanceDue).toLocaleString()}
+                    Balance Payment Due: â‚¹{parseFloat(ledgerStaff.balanceDue).toLocaleString()}
                   </p>
                 )}
               </div>
@@ -563,7 +563,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                         <td className="py-3 px-2 text-[var(--muted)] text-xs leading-relaxed" style={{ wordBreak: 'break-word', whiteSpace: 'normal', minWidth: '200px' }}>
                           {formatNoteDates(acc.notes) || '-'}
                         </td>
-                        <td className="py-3 px-2 text-right font-bold text-green-600">₹{parseFloat(acc.amount || 0).toLocaleString()}</td>
+                        <td className="py-3 px-2 text-right font-bold text-green-600">â‚¹{parseFloat(acc.amount || 0).toLocaleString()}</td>
                       </tr>
                     ))}
                   {allAccounts.filter(acc => acc.type === 'Expense' && (acc.reference === `Salary - ${ledgerStaff.name}` || acc.reference === `Overtime - ${ledgerStaff.name}`)).length === 0 && (
@@ -632,7 +632,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                 />
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-[var(--text)]">Salary (₹) <span className="text-red-500">*</span></span>
+                <span className="text-sm font-medium text-[var(--text)]">Salary (â‚¹) <span className="text-red-500">*</span></span>
                 <input
                   name="salary"
                   className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
@@ -645,7 +645,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                 />
               </label>
               <label className="block">
-                <span className="text-sm font-medium text-[var(--text)]">Salary Per Day (₹) <span className="text-[11px] text-[var(--muted)]">- Optional</span></span>
+                <span className="text-sm font-medium text-[var(--text)]">Salary Per Day (â‚¹) <span className="text-[11px] text-[var(--muted)]">- Optional</span></span>
                 <input
                   name="salaryPerDay"
                   className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
@@ -714,16 +714,16 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
               return (
                 <>
                   <label className="block sm:col-span-2">
-                    <span className="text-sm font-medium text-[var(--text)]">Current Pending Balance (₹)</span>
+                    <span className="text-sm font-medium text-[var(--text)]">Current Pending Balance (â‚¹)</span>
                     <input
                       type="text"
                       className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 outline-none opacity-80"
-                      value={staff && staff.balanceDue ? `₹${parseFloat(staff.balanceDue).toLocaleString()}` : '₹0'}
+                      value={staff && staff.balanceDue ? `â‚¹${parseFloat(staff.balanceDue).toLocaleString()}` : 'â‚¹0'}
                       readOnly
                     />
                   </label>
                   <label className="block sm:col-span-1">
-                    <span className="text-sm font-medium text-[var(--text)]">Amount Paid (₹) <span className="text-red-500">*</span></span>
+                    <span className="text-sm font-medium text-[var(--text)]">Amount Paid (â‚¹) <span className="text-red-500">*</span></span>
                     <select
                       className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
                       value={payslipData.selectedLogId || ""}
@@ -733,7 +733,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                       <option value="">-- Select logged payment --</option>
                       {staffSalaryLogs.sort((a, b) => new Date(b.date) - new Date(a.date)).map(acc => (
                         <option key={acc.id} value={acc.id}>
-                          ₹{acc.amount} - {new Date(acc.date).toLocaleDateString()} {acc.notes ? `(${acc.notes.substring(0, 30)}${acc.notes.length > 30 ? '...' : ''})` : ''}
+                          â‚¹{acc.amount} - {new Date(acc.date).toLocaleDateString()} {acc.notes ? `(${acc.notes.substring(0, 30)}${acc.notes.length > 30 ? '...' : ''})` : ''}
                         </option>
                       ))}
                     </select>
@@ -788,7 +788,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
               </>
             )}
             <label className="block">
-              <span className="text-sm font-medium text-[var(--text)]">Overtime (₹) <span className="text-[11px] text-[var(--muted)]">- Optional</span></span>
+              <span className="text-sm font-medium text-[var(--text)]">Overtime (â‚¹) <span className="text-[11px] text-[var(--muted)]">- Optional</span></span>
               <select
                 className="mt-2 w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] px-4 py-3 outline-none transition focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10"
                 value={payslipData.overtime}
@@ -797,7 +797,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
               >
                 <option value="">0 (No Overtime)</option>
                 {monthlyOvertimeSum > 0 && (
-                  <option value={monthlyOvertimeSum}>₹{monthlyOvertimeSum} (Logged Overtime)</option>
+                  <option value={monthlyOvertimeSum}>â‚¹{monthlyOvertimeSum} (Logged Overtime)</option>
                 )}
               </select>
             </label>
@@ -889,7 +889,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                 <th>Salary (Monthly)</th>
                 <th>Salary / Day</th>
                 <th>Balance Payment Due</th>
-                <th>Total Paid (₹)</th>
+                <th>Total Paid (â‚¹)</th>
                 <th className="text-right">Action</th>
               </tr>
             </thead>
@@ -908,12 +908,12 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                       </span>
                     </td>
                     <td className="text-[var(--text)]">{staff.phone}</td>
-                    <td className="font-semibold text-[var(--text)]">₹{parseFloat(staff.salary || 0).toLocaleString()}</td>
-                    <td className="font-semibold text-[var(--text)]">{staff.salaryPerDay ? `₹${parseFloat(staff.salaryPerDay).toLocaleString()}` : '-'}</td>
-                    <td className="font-bold text-red-500">{staff.balanceDue && parseFloat(staff.balanceDue) !== 0 ? `₹${parseFloat(staff.balanceDue).toLocaleString()}` : '-'}</td>
+                    <td className="font-semibold text-[var(--text)]">â‚¹{parseFloat(staff.salary || 0).toLocaleString()}</td>
+                    <td className="font-semibold text-[var(--text)]">{staff.salaryPerDay ? `â‚¹${parseFloat(staff.salaryPerDay).toLocaleString()}` : '-'}</td>
+                    <td className="font-bold text-red-500">{staff.balanceDue && parseFloat(staff.balanceDue) !== 0 ? `â‚¹${parseFloat(staff.balanceDue).toLocaleString()}` : '-'}</td>
                     <td className="font-bold">
                       <div className="flex flex-col gap-1 items-start">
-                        <span className="text-green-600">₹{getDynamicTotalPaid(staff).toLocaleString()}</span>
+                        <span className="text-green-600">â‚¹{getDynamicTotalPaid(staff).toLocaleString()}</span>
                         {checkPaidStatus(staff) ? (
                           <span className="w-fit rounded bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-700">Paid {tableMonthFilter ? '' : '(This Month)'}</span>
                         ) : (
@@ -987,20 +987,20 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                       <div className="pt-3 border-t border-[var(--border)] mb-4 flex flex-col gap-2">
                         <div className="flex justify-between items-center text-xs">
                           <span className="text-[var(--muted)] font-semibold">Monthly Salary:</span>
-                          <span className="font-medium text-[var(--text)]">₹{parseFloat(staff.salary || 0).toLocaleString()}</span>
+                          <span className="font-medium text-[var(--text)]">â‚¹{parseFloat(staff.salary || 0).toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs">
                           <span className="text-[var(--muted)] font-semibold">Salary / Day:</span>
-                          <span className="font-medium text-[var(--text)]">{staff.salaryPerDay ? `₹${parseFloat(staff.salaryPerDay).toLocaleString()}` : '-'}</span>
+                          <span className="font-medium text-[var(--text)]">{staff.salaryPerDay ? `â‚¹${parseFloat(staff.salaryPerDay).toLocaleString()}` : '-'}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs">
                           <span className="text-[var(--muted)] font-semibold">Balance Due:</span>
-                          <span className="font-bold text-red-500">{staff.balanceDue && parseFloat(staff.balanceDue) !== 0 ? `₹${parseFloat(staff.balanceDue).toLocaleString()}` : '-'}</span>
+                          <span className="font-bold text-red-500">{staff.balanceDue && parseFloat(staff.balanceDue) !== 0 ? `â‚¹${parseFloat(staff.balanceDue).toLocaleString()}` : '-'}</span>
                         </div>
                         <div className="flex justify-between items-center text-xs">
                           <span className="text-[var(--muted)] font-semibold">Total Paid:</span>
                           <div className="flex flex-col gap-1 items-end">
-                            <span className="text-green-600 font-bold">₹{getDynamicTotalPaid(staff).toLocaleString()}</span>
+                            <span className="text-green-600 font-bold">â‚¹{getDynamicTotalPaid(staff).toLocaleString()}</span>
                             {checkPaidStatus(staff) ? (
                               <span className="w-fit rounded bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-700">Paid {tableMonthFilter ? '' : '(This Month)'}</span>
                             ) : (
@@ -1054,8 +1054,8 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
           <div id="payslip-template" style={{ width: '700px', padding: '40px', boxSizing: 'border-box', background: '#fff', color: '#000', fontFamily: 'sans-serif' }}>
             <div style={{ textAlign: 'center', borderBottom: '2px dashed #ccc', paddingBottom: '20px', marginBottom: '30px' }}>
               <img src="/logo-black.png" alt="Logo" style={{ width: '112px', height: '128px', margin: '0 auto 16px auto', objectFit: 'contain', display: 'block' }} />
-              <h3 style={{ textTransform: 'uppercase', letterSpacing: '-0.025em', fontSize: '24px', fontWeight: '800', margin: '0', color: '#111' }}>Classy Couture</h3>
-              <p style={{ fontSize: '12px', fontWeight: '500', margin: '4px 0 2px' }}>Be Unique, Be Classy</p>
+              <h3 style={{ textTransform: 'uppercase', letterSpacing: '-0.025em', fontSize: '24px', fontWeight: '800', margin: '0', color: '#111' }}>Malka</h3>
+              <p style={{ fontSize: '12px', fontWeight: '500', margin: '4px 0 2px' }}>Be Unique, Be Malka</p>
               <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
               <p style={{ margin: '16px 0 0', color: '#444', fontSize: '16px', fontWeight: 'bold', textTransform: 'uppercase' }}>Official Payslip Record</p>
             </div>
@@ -1092,28 +1092,28 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
                 <tbody>
                   <tr style={{ borderBottom: '1px solid #eee' }}>
                     <td style={{ padding: '16px 20px' }}>Basic Salary</td>
-                    <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>₹{parseFloat(activeStaffForPdf.salary || 0).toLocaleString()}</td>
+                    <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>â‚¹{parseFloat(activeStaffForPdf.salary || 0).toLocaleString()}</td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #eee' }}>
                     <td style={{ padding: '16px 20px' }}>Salary Paid for {activeStaffForPdf.payslipType === 'Monthly' ? new Date(activeStaffForPdf.payslipMonth + '-01').toLocaleString('default', { month: 'long' }) : 'Selected Period'}</td>
-                    <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>₹{parseFloat(activeStaffForPdf.payslipAmount || 0).toLocaleString()}</td>
+                    <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>â‚¹{parseFloat(activeStaffForPdf.payslipAmount || 0).toLocaleString()}</td>
                   </tr>
                   {parseFloat(activeStaffForPdf.payslipOvertime || 0) > 0 && (
                     <tr style={{ borderBottom: '1px solid #eee' }}>
                       <td style={{ padding: '16px 20px' }}>Overtime Pay</td>
-                      <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>₹{parseFloat(activeStaffForPdf.payslipOvertime || 0).toLocaleString()}</td>
+                      <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold' }}>â‚¹{parseFloat(activeStaffForPdf.payslipOvertime || 0).toLocaleString()}</td>
                     </tr>
                   )}
                   <tr style={{ borderBottom: '1px solid #eee' }}>
                     <td style={{ padding: '16px 20px' }}>Total Pending Balance</td>
                     <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold', color: parseFloat(activeStaffForPdf.balanceDue || 0) > 0 ? 'red' : 'green' }}>
-                      ₹{parseFloat(activeStaffForPdf.balanceDue || 0).toLocaleString()}
+                      â‚¹{parseFloat(activeStaffForPdf.balanceDue || 0).toLocaleString()}
                     </td>
                   </tr>
                   <tr style={{ borderBottom: '1px solid #eee', background: '#f8f9fa' }}>
                     <td style={{ padding: '16px 20px', fontWeight: 'bold', fontSize: '18px' }}>Total Gross Pay</td>
                     <td style={{ padding: '16px 20px', textAlign: 'right', fontWeight: 'bold', color: 'green', fontSize: '18px' }}>
-                      ₹{(parseFloat(activeStaffForPdf.payslipAmount || 0) + parseFloat(activeStaffForPdf.payslipOvertime || 0)).toLocaleString()}
+                      â‚¹{(parseFloat(activeStaffForPdf.payslipAmount || 0) + parseFloat(activeStaffForPdf.payslipOvertime || 0)).toLocaleString()}
                     </td>
                   </tr>
                 </tbody>

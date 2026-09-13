@@ -222,7 +222,7 @@ function PublicReceipt({ billId, onClear }) {
           <CheckCircle size={18} />
           <span className="text-[10px] font-black uppercase tracking-[0.2em]">Verified Digital Receipt</span>
         </div>
-        <h1 className="text-3xl font-black mb-2 text-stone-900">Classy Couture</h1>
+        <h1 className="text-3xl font-black mb-2 text-stone-900">Malka</h1>
         <p className="text-stone-500 text-sm">Thank you for your {isOrder ? 'order' : 'purchase'}!</p>
 
         {isOrder && (
@@ -241,8 +241,8 @@ function PublicReceipt({ billId, onClear }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                   <img src="/logo-black.png" alt="Logo" style={{ width: '80px', height: '85px', objectFit: 'contain' }} />
                   <div>
-                    <h1 style={{ margin: 0, fontSize: '32px', color: '#111827', fontWeight: '800', letterSpacing: '-0.5px' }}>Classy Couture</h1>
-                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Be Unique, Be Classy</p>
+                    <h1 style={{ margin: 0, fontSize: '32px', color: '#111827', fontWeight: '800', letterSpacing: '-0.5px' }}>Malka</h1>
+                    <p style={{ margin: '5px 0 0 0', fontSize: '15px', color: '#6b7280' }}>Be Unique, Be Malka</p>
                   </div>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -281,7 +281,7 @@ function PublicReceipt({ billId, onClear }) {
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #f3f4f6', fontSize: '16px', fontWeight: '600', color: '#111827' }}>{sale.product}</td>
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #f3f4f6', fontSize: '15px', color: '#4b5563' }}>{sale.orderType || '-'}</td>
                       <td style={{ padding: '20px 15px', borderBottom: '1px solid #f3f4f6', fontSize: '15px', color: '#4b5563', textAlign: 'center' }}>{sale.size || '1'}</td>
-                      <td style={{ padding: '20px 15px', borderBottom: '1px solid #f3f4f6', fontSize: '16px', fontWeight: '600', color: '#111827', textAlign: 'right' }}>₹{parseFloat(sale.price || 0).toFixed(2)}</td>
+                      <td style={{ padding: '20px 15px', borderBottom: '1px solid #f3f4f6', fontSize: '16px', fontWeight: '600', color: '#111827', textAlign: 'right' }}>â‚¹{parseFloat(sale.price || 0).toFixed(2)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -292,24 +292,24 @@ function PublicReceipt({ billId, onClear }) {
                 <div style={{ width: '380px', backgroundColor: '#f9fafb', padding: '25px', borderRadius: '12px', border: '1px solid #e5e7eb' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '16px' }}>
                     <span style={{ color: '#4b5563' }}>Subtotal:</span>
-                    <span style={{ fontWeight: '600', color: '#111827' }}>₹{parseFloat(sale.price || 0).toFixed(2)}</span>
+                    <span style={{ fontWeight: '600', color: '#111827' }}>â‚¹{parseFloat(sale.price || 0).toFixed(2)}</span>
                   </div>
                   {sale.advance > 0 && (
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px', fontSize: '16px' }}>
                       <span style={{ color: '#4b5563' }}>Advance Paid:</span>
-                      <span style={{ fontWeight: '600', color: '#059669' }}>- ₹{parseFloat(sale.advance || 0).toFixed(2)}</span>
+                      <span style={{ fontWeight: '600', color: '#059669' }}>- â‚¹{parseFloat(sale.advance || 0).toFixed(2)}</span>
                     </div>
                   )}
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px', paddingTop: '20px', borderTop: '2px dashed #d1d5db', fontSize: '22px' }}>
                     <span style={{ fontWeight: '800', color: '#111827' }}>Balance Due:</span>
-                    <span style={{ fontWeight: '800', color: '#111827' }}>₹{(parseFloat(sale.price || 0) - parseFloat(sale.advance || 0)).toFixed(2)}</span>
+                    <span style={{ fontWeight: '800', color: '#111827' }}>â‚¹{(parseFloat(sale.price || 0) - parseFloat(sale.advance || 0)).toFixed(2)}</span>
                   </div>
                 </div>
               </div>
 
               {/* Footer */}
               <div style={{ textAlign: 'center', borderTop: '2px solid #f3f4f6', paddingTop: '30px', color: '#6b7280' }}>
-                <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: '600', color: '#111827' }}>Thank you for choosing Classy Couture!</p>
+                <p style={{ margin: '0 0 8px 0', fontSize: '16px', fontWeight: '600', color: '#111827' }}>Thank you for choosing Malka!</p>
                 <p style={{ margin: 0, fontSize: '14px' }}>If you have any questions concerning this invoice, please contact us.</p>
                 <p style={{ margin: '20px 0 0 0', fontSize: '12px', color: '#9ca3af', fontStyle: 'italic' }}>This is a computer-generated document and does not require a signature.</p>
               </div>
@@ -321,8 +321,8 @@ function PublicReceipt({ billId, onClear }) {
         <div id="printable-bill" className="mb-8 bg-white p-4 text-black shadow-inner overflow-hidden mx-auto" style={{ width: '97mm', minHeight: '120mm', fontFamily: 'monospace' }}>
           <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
             <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
-            <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Classy Couture</h3>
-            <p className="text-[10px] font-medium">Be Unique, Be Classy</p>
+            <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
+            <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
             <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
             <div className="mt-2 text-gray-500">
               <p className='!text-[10px]'>Order ID: {sale.saleId}</p>
@@ -340,7 +340,7 @@ function PublicReceipt({ billId, onClear }) {
               <tr className="border-b border-dashed border-gray-300 text-left">
                 <th className="py-1 min-w-[100px] pr-2">Item</th>
                 <th className="py-1 text-center px-3">Qty</th>
-                <th className="py-1 text-right px-3 whitespace-nowrap">Disc (₹/%)</th>
+                <th className="py-1 text-right px-3 whitespace-nowrap">Disc (â‚¹/%)</th>
                 <th className="py-1 text-right pl-3 whitespace-nowrap">Total</th>
               </tr>
             </thead>
@@ -355,14 +355,14 @@ function PublicReceipt({ billId, onClear }) {
                     <td className="py-2 pr-2">
                       <p className="font-bold">{item.productName.replace(/\s*\(Order #[^)]+\)/g, '')}</p>
                       <div className="flex flex-col mt-0.5">
-                        <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: ₹{item.price || item.rate}</p>
+                        <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: â‚¹{item.price || item.rate}</p>
                       </div>
                     </td>
                     <td className="py-2 text-center px-3">{item.qty}</td>
                     <td className="py-2 text-right px-3">
-                      {item.rowTotal !== undefined ? '₹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
+                      {item.rowTotal !== undefined ? 'â‚¹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
                     </td>
-                    <td className="py-2 text-right pl-3 font-bold">₹{parseFloat(rowTotal).toFixed(2)}</td>
+                    <td className="py-2 text-right pl-3 font-bold">â‚¹{parseFloat(rowTotal).toFixed(2)}</td>
                   </tr>
                 );
               })}
@@ -372,7 +372,7 @@ function PublicReceipt({ billId, onClear }) {
           <div className="border-t-2 border-dashed border-gray-300 pt-3 space-y-1">
             <div className="flex justify-between text-sm font-black">
               <span>Grand Total</span>
-              <span>₹{((sale.items || []).reduce((s, i) => s + ((i.price || i.rate) * i.qty), 0) - (sale.items?.reduce((s, i) => s + (parseFloat(i.discount) || 0), 0) || 0)).toFixed(2)}</span>
+              <span>â‚¹{((sale.items || []).reduce((s, i) => s + ((i.price || i.rate) * i.qty), 0) - (sale.items?.reduce((s, i) => s + (parseFloat(i.discount) || 0), 0) || 0)).toFixed(2)}</span>
             </div>
           </div>
 
@@ -386,7 +386,7 @@ function PublicReceipt({ billId, onClear }) {
       )}
 
       <p className="mt-8 text-[10px] font-bold text-stone-400 uppercase tracking-widest">
-        Powered by Classy ERP
+        Powered by Malka ERP
       </p>
     </div>
   );

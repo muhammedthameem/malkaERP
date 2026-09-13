@@ -127,7 +127,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
 
     let html = `
       <div style="text-align: center; margin-bottom: 40px; border-bottom: 2px solid #8e4431; padding-bottom: 20px;">
-        <h1 style="margin: 0; color: #8e4431; font-size: 28px; letter-spacing: 2px;">CLASSY BOUTIQUE</h1>
+        <h1 style="margin: 0; color: #8e4431; font-size: 28px; letter-spacing: 2px;">Malka Boutique</h1>
         <p style="margin: 5px 0 0 0; color: #6b7280; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1px;">Business Intelligence Report</p>
         <p style="margin: 15px 0 0 0; font-size: 14px; color: #374151;">Filter: <strong>${filter.toUpperCase()}</strong> | Date: <strong>${new Date().toLocaleDateString()}</strong></p>
       </div>
@@ -135,7 +135,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 20px;">
         <div style="background: #f0fdf4; border: 1px solid #bcf0da; padding: 15px; border-radius: 12px; text-align: center;">
           <p style="margin: 0; font-size: 10px; color: #166534; font-weight: 800; text-transform: uppercase;">Total Revenue</p>
-          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #14532d;">₹${reportStats.totalRevenue.toLocaleString()}</p>
+          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #14532d;">â‚¹${reportStats.totalRevenue.toLocaleString()}</p>
         </div>
         <div style="background: #eff6ff; border: 1px solid #dbeafe; padding: 15px; border-radius: 12px; text-align: center;">
           <p style="margin: 0; font-size: 10px; color: #1e40af; font-weight: 800; text-transform: uppercase;">Sales Count</p>
@@ -147,18 +147,18 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
         </div>
         <div style="background: #faf5ff; border: 1px solid #f3e8ff; padding: 15px; border-radius: 12px; text-align: center;">
           <p style="margin: 0; font-size: 10px; color: #6b21a8; font-weight: 800; text-transform: uppercase;">Purchase Investment</p>
-          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #581c87;">₹${reportStats.totalInvestment.toLocaleString()}</p>
+          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #581c87;">â‚¹${reportStats.totalInvestment.toLocaleString()}</p>
         </div>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 40px;">
         <div style="background: #f0fdfa; border: 1px solid #ccfbf1; padding: 15px; border-radius: 12px; text-align: center;">
           <p style="margin: 0; font-size: 10px; color: #0f766e; font-weight: 800; text-transform: uppercase;">Other Income</p>
-          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #0f766e;">₹${reportStats.totalIncome.toLocaleString()}</p>
+          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #0f766e;">â‚¹${reportStats.totalIncome.toLocaleString()}</p>
         </div>
         <div style="background: #fef2f2; border: 1px solid #fee2e2; padding: 15px; border-radius: 12px; text-align: center;">
           <p style="margin: 0; font-size: 10px; color: #b91c1c; font-weight: 800; text-transform: uppercase;">Other Expenses</p>
-          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #b91c1c;">₹${reportStats.totalExpense.toLocaleString()}</p>
+          <p style="margin: 5px 0 0 0; font-size: 20px; font-weight: 900; color: #b91c1c;">â‚¹${reportStats.totalExpense.toLocaleString()}</p>
         </div>
       </div>
 
@@ -179,7 +179,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">${new Date(i.createdAt).toLocaleDateString()}</td>
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">${i.productName}</td>
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">${i.vendorName || 'N/A'}</td>
-                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">₹${(parseFloat(i.purchasePrice || 0) * (parseFloat(i.quantity) || 0)).toLocaleString()}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">â‚¹${(parseFloat(i.purchasePrice || 0) * (parseFloat(i.quantity) || 0)).toLocaleString()}</td>
               </tr>
             `).join('') : '<tr><td colspan="4" style="padding: 20px; text-align: center; color: #9ca3af;">No purchase records found</td></tr>'}
           </tbody>
@@ -203,7 +203,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">${new Date(s.timestamp).toLocaleDateString()}</td>
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; font-family: monospace; font-weight: bold;">${s.saleId}</td>
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">${s.client?.name || 'Guest'}</td>
-                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">₹${parseFloat(s.total).toFixed(2)}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">â‚¹${parseFloat(s.total).toFixed(2)}</td>
               </tr>
             `).join('') : '<tr><td colspan="4" style="padding: 20px; text-align: center; color: #9ca3af;">No sales records found</td></tr>'}
           </tbody>
@@ -231,7 +231,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                 <td style="padding: 12px; border-bottom: 1px solid #f3f4f6;">
                   <span style="background: ${o.status === 'Completed' ? '#dcfce7' : o.status === 'Sold' ? '#f3e8ff' : o.status === 'In Progress' ? '#dbeafe' : o.status === 'Hold' ? '#ffedd5' : '#f3f4f6'}; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; color: ${o.status === 'Completed' ? '#166534' : o.status === 'Sold' ? '#6b21a8' : o.status === 'In Progress' ? '#1e40af' : o.status === 'Hold' ? '#9a3412' : '#4b5563'};">${o.status}</span>
                 </td>
-                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">${o.status === 'Sold' && saleOrderPrices[o.id] ? '₹' + saleOrderPrices[o.id] : o.price}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #f3f4f6; text-align: right; font-weight: bold;">${o.status === 'Sold' && saleOrderPrices[o.id] ? 'â‚¹' + saleOrderPrices[o.id] : o.price}</td>
               </tr>
             `).join('') : '<tr><td colspan="5" style="padding: 20px; text-align: center; color: #9ca3af;">No order records found</td></tr>'}
           </tbody>
@@ -239,7 +239,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
       </div>
 
       <div style="margin-top: 60px; text-align: center; font-size: 10px; color: #9ca3af; border-top: 1px solid #f3f4f6; padding-top: 20px;">
-        Generated by Classy Couture ERP System | © ${new Date().getFullYear()}
+        Generated by Malka ERP System | Â© ${new Date().getFullYear()}
       </div>
     `;
 
@@ -247,7 +247,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
 
     const opt = {
       margin: 10,
-      filename: `Classy_Boutique_Report_${filter}_${new Date().toLocaleDateString()}.pdf`,
+      filename: `malka_Boutique_Report_${filter}_${new Date().toLocaleDateString()}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: { scale: 2, useCORS: true },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
@@ -384,12 +384,12 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
             ))
           ) : (
             <>
-              <ReportStatCard icon={<TrendingUp className="text-green-500" />} label="Total Revenue" value={`₹${reportStats.totalRevenue.toLocaleString()}`} color="green" />
-              <ReportStatCard icon={<ShoppingBag className="text-blue-500" />} label="Total Purchase" value={`₹${reportStats.totalInvestment.toLocaleString()}`} color="red" />
+              <ReportStatCard icon={<TrendingUp className="text-green-500" />} label="Total Revenue" value={`â‚¹${reportStats.totalRevenue.toLocaleString()}`} color="green" />
+              <ReportStatCard icon={<ShoppingBag className="text-blue-500" />} label="Total Purchase" value={`â‚¹${reportStats.totalInvestment.toLocaleString()}`} color="red" />
               <ReportStatCard icon={<Clock className="text-orange-500" />} label="Pending Orders" value={reportStats.pendingOrders} color="orange" />
               <ReportStatCard icon={<UsersRound className="text-purple-500" />} label="Customers" value={reportStats.totalClients} color="purple" />
-              <ReportStatCard icon={<CircleDollarSign className="text-teal-500" />} label="Other Income" value={`₹${reportStats.totalIncome.toLocaleString()}`} color="teal" />
-              <ReportStatCard icon={<TrendingDown className="text-red-500" />} label="Other Expense" value={`₹${reportStats.totalExpense.toLocaleString()}`} color="red" />
+              <ReportStatCard icon={<CircleDollarSign className="text-teal-500" />} label="Other Income" value={`â‚¹${reportStats.totalIncome.toLocaleString()}`} color="teal" />
+              <ReportStatCard icon={<TrendingDown className="text-red-500" />} label="Other Expense" value={`â‚¹${reportStats.totalExpense.toLocaleString()}`} color="red" />
             </>
           )}
         </div>
@@ -435,9 +435,9 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                       <td>{new Date(i.createdAt).toLocaleDateString()}</td>
                       <td className="font-bold">{i.productName}</td>
                       <td className="font-medium text-[var(--muted)]">{i.vendorName || 'N/A'}</td>
-                      <td className="text-right">₹{parseFloat(i.purchasePrice || 0).toFixed(2)}</td>
+                      <td className="text-right">â‚¹{parseFloat(i.purchasePrice || 0).toFixed(2)}</td>
                       <td className="text-right">{i.initialQuantity || i.quantity} {i.unit}</td>
-                      <td className="text-right font-black text-red-500">₹{(parseFloat(i.purchasePrice || 0) * (parseFloat(i.initialQuantity || i.quantity) || 0)).toLocaleString()}</td>
+                      <td className="text-right font-black text-red-500">â‚¹{(parseFloat(i.purchasePrice || 0) * (parseFloat(i.initialQuantity || i.quantity) || 0)).toLocaleString()}</td>
                     </tr>
                   ))}
                   {filteredInventory.length === 0 && !isDataLoading && (
@@ -467,7 +467,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
                           <div className="flex flex-col items-end gap-1">
-                            <span className="font-black text-red-500 text-sm">₹{(parseFloat(i.purchasePrice || 0) * (parseFloat(i.quantity) || 0)).toLocaleString()}</span>
+                            <span className="font-black text-red-500 text-sm">â‚¹{(parseFloat(i.purchasePrice || 0) * (parseFloat(i.quantity) || 0)).toLocaleString()}</span>
                             <span className="text-[9px] font-bold text-[var(--muted)]">{i.quantity} {i.unit}</span>
                           </div>
                           <div className={`transition-transform duration-300 text-[var(--muted)] ${isExpanded ? 'rotate-180 text-[var(--accent)]' : ''}`}>
@@ -484,7 +484,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                             </div>
                             <div className="flex justify-between items-center text-xs">
                               <span className="text-[var(--muted)] font-semibold">Unit Cost:</span>
-                              <span className="font-bold text-[var(--text)]">₹{parseFloat(i.purchasePrice || 0).toFixed(2)}</span>
+                              <span className="font-bold text-[var(--text)]">â‚¹{parseFloat(i.purchasePrice || 0).toFixed(2)}</span>
                             </div>
                           </div>
                         </div>
@@ -534,7 +534,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                       <td>{new Date(s.timestamp).toLocaleDateString()}</td>
                       <td className="font-mono font-bold text-[var(--muted)]">{s.saleId}</td>
                       <td className="font-medium">{s.client?.name || 'Guest'}</td>
-                      <td className="text-right font-black text-[var(--accent)]">₹{parseFloat(s.total).toFixed(2)}</td>
+                      <td className="text-right font-black text-[var(--accent)]">â‚¹{parseFloat(s.total).toFixed(2)}</td>
                     </tr>
                   ))}
                   {paginatedSales.length === 0 && !isDataLoading && (
@@ -563,7 +563,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                           <span className="text-[10px] font-semibold text-[var(--muted)]">{new Date(s.timestamp).toLocaleDateString()}</span>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
-                          <span className="font-black text-[var(--accent)] text-sm">₹{parseFloat(s.total).toFixed(2)}</span>
+                          <span className="font-black text-[var(--accent)] text-sm">â‚¹{parseFloat(s.total).toFixed(2)}</span>
                           <div className={`transition-transform duration-300 text-[var(--muted)] ${isExpanded ? 'rotate-180 text-[var(--accent)]' : ''}`}>
                             <ChevronDown size={18} />
                           </div>
@@ -651,7 +651,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                           {o.status}
                         </span>
                       </td>
-                      <td className="text-right font-bold">{o.status === 'Sold' && saleOrderPrices[o.id] ? `₹${saleOrderPrices[o.id]}` : o.price}</td>
+                      <td className="text-right font-bold">{o.status === 'Sold' && saleOrderPrices[o.id] ? `â‚¹${saleOrderPrices[o.id]}` : o.price}</td>
                     </tr>
                   ))}
                   {paginatedOrders.length === 0 && !isDataLoading && (
@@ -693,7 +693,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                           <div className="pt-3 border-t border-[var(--border)] flex flex-col gap-2">
                             <div className="flex justify-between items-center text-xs">
                               <span className="text-[var(--muted)] font-semibold">Price:</span>
-                              <span className="font-bold">{o.status === 'Sold' && saleOrderPrices[o.id] ? `₹${saleOrderPrices[o.id]}` : o.price}</span>
+                              <span className="font-bold">{o.status === 'Sold' && saleOrderPrices[o.id] ? `â‚¹${saleOrderPrices[o.id]}` : o.price}</span>
                             </div>
                           </div>
                         </div>
@@ -765,7 +765,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                       <td>{new Date(s.date).toLocaleDateString()}</td>
                       <td className="font-mono font-bold text-[var(--muted)]">{s.category}</td>
                       <td className="font-medium">{s.reference || '-'}</td>
-                      <td className="text-right font-black text-green-600">₹{parseFloat(s.amount).toFixed(2)}</td>
+                      <td className="text-right font-black text-green-600">â‚¹{parseFloat(s.amount).toFixed(2)}</td>
                     </tr>
                   ))}
                   {paginatedIncome.length === 0 && !isDataLoading && (
@@ -794,7 +794,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                           <span className="text-[10px] font-semibold text-[var(--muted)]">{new Date(s.date).toLocaleDateString()}</span>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
-                          <span className="font-black text-green-600 text-sm">₹{parseFloat(s.amount).toFixed(2)}</span>
+                          <span className="font-black text-green-600 text-sm">â‚¹{parseFloat(s.amount).toFixed(2)}</span>
                           <div className={`transition-transform duration-300 text-[var(--muted)] ${isExpanded ? 'rotate-180 text-[var(--accent)]' : ''}`}>
                             <ChevronDown size={18} />
                           </div>
@@ -875,7 +875,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                       <td>{new Date(s.date).toLocaleDateString()}</td>
                       <td className="font-mono font-bold text-[var(--muted)]">{s.category}</td>
                       <td className="font-medium">{s.reference || '-'}</td>
-                      <td className="text-right font-black text-red-600">₹{parseFloat(s.amount).toFixed(2)}</td>
+                      <td className="text-right font-black text-red-600">â‚¹{parseFloat(s.amount).toFixed(2)}</td>
                     </tr>
                   ))}
                   {paginatedExpense.length === 0 && !isDataLoading && (
@@ -904,7 +904,7 @@ function ReportsPage({ themeStyle, showGlobalToast, sales, orders, clients, inve
                           <span className="text-[10px] font-semibold text-[var(--muted)]">{new Date(s.date).toLocaleDateString()}</span>
                         </div>
                         <div className="flex items-center gap-3 shrink-0">
-                          <span className="font-black text-red-600 text-sm">₹{parseFloat(s.amount).toFixed(2)}</span>
+                          <span className="font-black text-red-600 text-sm">â‚¹{parseFloat(s.amount).toFixed(2)}</span>
                           <div className={`transition-transform duration-300 text-[var(--muted)] ${isExpanded ? 'rotate-180 text-[var(--accent)]' : ''}`}>
                             <ChevronDown size={18} />
                           </div>

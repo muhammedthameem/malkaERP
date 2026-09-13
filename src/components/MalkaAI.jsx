@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Bot, X, Send, UserPlus, ShoppingBag, BarChart3, Search, MessageSquare, Mic, Sparkles, Package } from 'lucide-react';
 import supabase from '../supabase';
 
-const ClassyAI = ({
+const MalkaAI = ({
   user,
   isAdmin,
   clients,
@@ -141,11 +141,11 @@ const ClassyAI = ({
 
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: `Hello ${user?.name || 'there'}! I'm Classy AI. How can I help you manage your boutique today?` }
+    { role: 'assistant', content: `Hello ${user?.name || 'there'}! I'm Malka AI. How can I help you manage your boutique today?` }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const storedAgent = localStorage.getItem('erp_ai_agent');
-  const [agentMode, setAgentMode] = useState(storedAgent === 'intelligent' ? 'classy' : (storedAgent || 'classy'));
+  const [agentMode, setAgentMode] = useState(storedAgent === 'intelligent' ? 'malka' : (storedAgent || 'malka'));
   const [apiKey, setApiKey] = useState(localStorage.getItem('erp_gemini_api_key') || '');
   const scrollRef = useRef(null);
 
@@ -186,7 +186,7 @@ const ClassyAI = ({
         return "⚠️ Please enter your Gemini API Key to use Gemini.\n\nType exactly:\n**KEY: your_api_key**";
       }
       try {
-        const systemPrompt = `You are Classy AI, the dedicated intelligent manager for Classy ERP.
+        const systemPrompt = `You are Malka AI, the dedicated intelligent manager for Malka ERP.
 You have FULL UNRESTRICTED ACCESS to the entire boutique database and the ability to perform any Create, Read, Update, and Delete operations on ANY table.
 
 BOUTIQUE DATABASE CONTEXT:
@@ -557,7 +557,7 @@ RULES:
                   <Sparkles size={18} className="text-white sm:size-[22px]" />
                 </div>
                 <div className="min-w-0 leading-tight">
-                  <h3 className="text-sm sm:text-base font-bold tracking-tight drop-shadow-md truncate">Classy AI</h3>
+                  <h3 className="text-sm sm:text-base font-bold tracking-tight drop-shadow-md truncate">Malka AI</h3>
                   <div className="hidden xs:inline-flex items-center gap-1 text-[8px] uppercase tracking-[0.15em] font-black py-0.5 px-1.5 bg-black/20 rounded mt-0.5">
                     <span className="relative flex h-1 w-1">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -578,7 +578,7 @@ RULES:
                   }}
                   className="bg-black/20 text-white text-[9px] sm:text-[10px] rounded-lg px-2 py-1 outline-none font-bold uppercase tracking-wider border border-white/10 cursor-pointer"
                 >
-                  <option value="classy" className="bg-[var(--surface-strong)] text-[var(--text)]">Basic</option>
+                  <option value="malka" className="bg-[var(--surface-strong)] text-[var(--text)]">Basic</option>
                   <option value="gemini" className="bg-[var(--surface-strong)] text-[var(--text)]">Gemini 1.5</option>
                 </select>
                 <button onClick={() => setIsOpen(false)} className="rounded-lg bg-black/10 p-1.5 hover:bg-black/20 text-white transition cursor-pointer">
@@ -661,4 +661,4 @@ RULES:
   );
 };
 
-export default ClassyAI;
+export default MalkaAI;

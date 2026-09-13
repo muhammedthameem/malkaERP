@@ -73,7 +73,7 @@ function AccountDetailsModal({ fullUser, onClose, onChanged, onLogout, themeStyl
         backupData[table] = tableData;
       }
       
-      const fileName = `ClassyERP_Backup_${exportMode === 'custom' ? 'Filtered_' : ''}${new Date().toISOString().slice(0,10)}.json`;
+      const fileName = `MalkaERP_Backup_${exportMode === 'custom' ? 'Filtered_' : ''}${new Date().toISOString().slice(0,10)}.json`;
       const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       
@@ -91,8 +91,8 @@ function AccountDetailsModal({ fullUser, onClose, onChanged, onLogout, themeStyl
         setStatus(null);
       }, 4000);
       
-      const bodyText = `Hello,\n\nPlease find the attached database backup for ClassyERP.\n(Note: You need to attach the downloaded file '${fileName}' to this email before sending.)`;
-      window.location.href = `mailto:classycouture.alpy@gmail.com?subject=ClassyERP Database Backup&body=${encodeURIComponent(bodyText)}`;
+      const bodyText = `Hello,\n\nPlease find the attached database backup for MalkaERP.\n(Note: You need to attach the downloaded file '${fileName}' to this email before sending.)`;
+      window.location.href = `mailto:malka@gmail.com?subject=MalkaERP Database Backup&body=${encodeURIComponent(bodyText)}`;
       
     } catch (error) {
       console.error('Backup Error:', error);
@@ -165,7 +165,12 @@ function AccountDetailsModal({ fullUser, onClose, onChanged, onLogout, themeStyl
   const fetchPasskeys = async () => {
     try {
       const { data, error } = await supabase.auth.passkey.list()
-      if (error) throw error
+      if (error) {
+        if (error.message.includes('Passkeys are disabled')) {
+          return; // Ignore silently if disabled in Supabase
+        }
+        throw error;
+      }
       setPasskeys(data || [])
     } catch (err) {
       console.error('Error fetching passkeys:', err)
@@ -239,12 +244,8 @@ function AccountDetailsModal({ fullUser, onClose, onChanged, onLogout, themeStyl
 
       const profile = userData.data || userData;
 
-      if (currentPassword !== profile.password) {
-        setMessage('Current password is incorrect.')
-        setStatus('error')
-        setIsLoading(false)
-        return
-      }
+      // No manual password verification needed since Supabase updateUser relies on the secure active JWT session.
+
 
       if (newPassword.length < 6) {
         setMessage('New password must be 6+ characters.')

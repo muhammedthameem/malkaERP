@@ -366,7 +366,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
         if (showGlobalToast) showGlobalToast('Split Payment Mismatch', 'The split amounts must equal the balance total.');
         setCartAlert({
           title: 'Payment Mismatch',
-          message: `The total of your split payments (₹${splitTotal.toFixed(2)}) does not match the Balance (₹${balanceTotal.toFixed(2)}). Please adjust the amounts.`,
+          message: `The total of your split payments (â‚¹${splitTotal.toFixed(2)}) does not match the Balance (â‚¹${balanceTotal.toFixed(2)}). Please adjust the amounts.`,
           type: 'error'
         });
         return;
@@ -523,7 +523,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
     setSales([...sales, newSale]);
     setShowReceipt(newSale);
 
-    if (showGlobalToast) showGlobalToast('Sale Processed', `Sale ${newSale.saleId} for ₹${parseFloat(newSale.total).toFixed(2)} (${newSale.client.name})`);
+    if (showGlobalToast) showGlobalToast('Sale Processed', `Sale ${newSale.saleId} for â‚¹${parseFloat(newSale.total).toFixed(2)} (${newSale.client.name})`);
 
     setCart([]);
     setSelectedClient(null);
@@ -627,11 +627,11 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
         .from('receipts')
         .getPublicUrl(fileName);
 
-      const appUrlObj = new URL('https://erp.classycouture.co.in');
+      const appUrlObj = new URL('https://erp.malka.co.in');
       appUrlObj.pathname = `/bill/${encryptId(showReceipt.saleId)}`;
       const finalAppUrl = appUrlObj.toString();
-      const greeting = "Thank you for choosing Classy Couture! Your elegance is our priority.";
-      let message = `*✨ INVOICE: ${showReceipt.saleId} ✨*\n`;
+      const greeting = "Thank you for choosing Malka! Your elegance is our priority.";
+      let message = `*âœ¨ INVOICE: ${showReceipt.saleId} âœ¨*\n`;
       message += `------------------------------\n`;
       message += `Hello *${showReceipt.client.name}*,\n`;
       message += `${greeting}\n\n`;
@@ -640,15 +640,15 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       showReceipt.items.forEach(item => {
         const itemPrice = parseFloat(item.price || 0).toFixed(2);
         const clientSuffix = item.clientName ? ` (Client: ${item.clientName})` : '';
-        message += `* ${item.productName}${clientSuffix} (x${item.qty}) - ₹${itemPrice}\n`;
+        message += `* ${item.productName}${clientSuffix} (x${item.qty}) - â‚¹${itemPrice}\n`;
       });
 
       const grandTotal = parseFloat(showReceipt.total || 0).toFixed(2);
-      message += `\nGrand Total: *₹${grandTotal}*\n`;
+      message += `\nGrand Total: *â‚¹${grandTotal}*\n`;
       message += `------------------------------\n`;
-      message += `📄 *View Digital Receipt:*\n${finalAppUrl}\n\n`;
+      message += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
       message += `Visit again for more unique designs!\n`;
-      message += `*Classy Couture - Be Unique, Be Classy*`;
+      message += `*Malka - Be Unique, Be Malka*`;
 
       const phone = showReceipt.client.phone ? showReceipt.client.phone.replace(/[^0-9]/g, '') : '';
       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
@@ -656,11 +656,11 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       window.open(`https://wa.me/${formattedPhone}?text=${encodeURIComponent(message)}`, '_blank');
     } catch (err) {
       console.error('WhatsApp Share Error:', err);
-      const appUrlObj = new URL('https://erp.classycouture.co.in');
+      const appUrlObj = new URL('https://erp.malka.co.in');
       appUrlObj.pathname = `/bill/${encryptId(showReceipt.saleId)}`;
       const finalAppUrl = appUrlObj.toString();
-      const greeting = "Thank you for choosing Classy Couture! Your elegance is our priority.";
-      let message = `*✨ INVOICE: ${showReceipt.saleId} ✨*\n`;
+      const greeting = "Thank you for choosing Malka! Your elegance is our priority.";
+      let message = `*âœ¨ INVOICE: ${showReceipt.saleId} âœ¨*\n`;
       message += `------------------------------\n`;
       message += `Hello *${showReceipt.client.name}*,\n`;
       message += `${greeting}\n\n`;
@@ -668,14 +668,14 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       showReceipt.items.forEach(item => {
         const itemPrice = parseFloat(item.price || 0).toFixed(2);
         const clientSuffix = item.clientName ? ` (Client: ${item.clientName})` : '';
-        message += `* ${item.productName}${clientSuffix} (x${item.qty}) - ₹${itemPrice}\n`;
+        message += `* ${item.productName}${clientSuffix} (x${item.qty}) - â‚¹${itemPrice}\n`;
       });
       const grandTotalFallback = parseFloat(showReceipt.total || 0).toFixed(2);
-      message += `\nGrand Total: *₹${grandTotalFallback}*\n`;
+      message += `\nGrand Total: *â‚¹${grandTotalFallback}*\n`;
       message += `------------------------------\n`;
-      message += `📄 *View Digital Receipt:*\n${finalAppUrl}\n\n`;
+      message += `ðŸ“„ *View Digital Receipt:*\n${finalAppUrl}\n\n`;
       message += `Visit again for more unique designs!\n`;
-      message += `*Classy Couture - Be Unique, Be Classy*`;
+      message += `*Malka - Be Unique, Be Malka*`;
 
       const phone = showReceipt.client.phone ? showReceipt.client.phone.replace(/[^0-9]/g, '') : '';
       const formattedPhone = phone.length === 10 ? `91${phone}` : phone;
@@ -695,20 +695,20 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
   const handleSMS = () => {
     if (!showReceipt) return;
 
-    let itemsText = showReceipt.items.map(item => `${item.productName} (x${item.qty}) - ₹${item.price}`).join(', ');
+    let itemsText = showReceipt.items.map(item => `${item.productName} (x${item.qty}) - â‚¹${item.price}`).join(', ');
 
     const subtotal = showReceipt.items.reduce((s, i) => s + (i.rate * i.qty), 0);
     const totDisc = showReceipt.items.reduce((s, i) => s + (parseFloat(i.discount) || 0), 0);
 
     let message = `Hi ${showReceipt.client.name}, %0a%0a`;
     message += `Items: ${itemsText}%0a`;
-    message += `Total Amount: ₹${subtotal.toFixed(2)}%0a`;
-    if (totDisc > 0) message += `Discount: -₹${totDisc.toFixed(2)}%0a`;
-    message += `Grand Total: ₹${parseFloat(showReceipt.total).toFixed(2)}%0a%0a`;
+    message += `Total Amount: â‚¹${subtotal.toFixed(2)}%0a`;
+    if (totDisc > 0) message += `Discount: -â‚¹${totDisc.toFixed(2)}%0a`;
+    message += `Grand Total: â‚¹${parseFloat(showReceipt.total).toFixed(2)}%0a%0a`;
     message += `Thank you for shopping!%0a`;
     message += `Your elegance is our priority.%0a`;
     message += `Please visit again for more unique designs.%0a%0a`;
-    message += `Digital Receipt: https://erp.classycouture.co.in/bill/${encryptId(showReceipt.saleId)}`;
+    message += `Digital Receipt: https://erp.malka.co.in/bill/${encryptId(showReceipt.saleId)}`;
 
     const phone = showReceipt.client.phone ? showReceipt.client.phone.replace(/[^0-9]/g, '') : '';
     window.location.href = `sms:${phone}?body=${message}`;
@@ -731,18 +731,18 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       <tr>
         <td style="padding: 4px 4px 4px 0; border-bottom: 1px dashed #eee;">
           <div style="font-weight: bold; font-size: 11px;">${item.productName.replace(/\s*\(Order #[^)]+\)/g, '')}</div>
-          <div style="font-size: 12px; font-weight: 700; color: #666; margin-top: 1px;">Rate: ₹${item.rate}</div>
+          <div style="font-size: 12px; font-weight: 700; color: #666; margin-top: 1px;">Rate: â‚¹${item.rate}</div>
         </td>
         <td style="text-align: center; font-size: 11px; padding: 4px 4px;">${item.qty}</td>
-        <td style="text-align: right; font-size: 11px; padding: 4px 4px;">₹${parseFloat(item.discount || 0).toFixed(0)}</td>
-        <td style="text-align: right; font-size: 11px; font-weight: bold; padding: 4px 0 4px 4px;">₹${parseFloat(item.rowTotal || (item.qty * item.rate) - (item.discount || 0)).toFixed(2)}</td>
+        <td style="text-align: right; font-size: 11px; padding: 4px 4px;">â‚¹${parseFloat(item.discount || 0).toFixed(0)}</td>
+        <td style="text-align: right; font-size: 11px; font-weight: bold; padding: 4px 0 4px 4px;">â‚¹${parseFloat(item.rowTotal || (item.qty * item.rate) - (item.discount || 0)).toFixed(2)}</td>
       </tr>
     `).join('');
 
     container.innerHTML = `
       <div style="text-align: center; margin-bottom: 15px; border-bottom: 2px dashed #000; padding-bottom: 10px;">
-        <h2 style="margin: 0; font-size: 20px; text-transform: uppercase;">Classy Couture</h2>
-        <p style="margin: 2px 0; font-size: 10px;">Be Unique, Be Classy</p>
+        <h2 style="margin: 0; font-size: 20px; text-transform: uppercase;">Malka</h2>
+        <p style="margin: 2px 0; font-size: 10px;">Be Unique, Be Malka</p>
         <p style="margin: 2px 0; font-size: 10px;">Ph : 8606154015</p>
       </div>
       <div style="margin-bottom: 15px; font-size: 11px;">
@@ -761,9 +761,9 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
         <tbody>${itemsHtml}</tbody>
       </table>
       <div style="border-top: 2px dashed #000; padding-top: 10px; font-size: 12px; font-weight: bold; text-align: right;">
-        <div style="font-size: 10px; font-weight: normal; margin-bottom: 2px;">Subtotal: ₹${subtotal.toFixed(2)}</div>
-        ${totDisc > 0 ? `<div style="font-size: 10px; font-weight: normal; margin-bottom: 2px;">Discount: -₹${totDisc.toFixed(2)}</div>` : ''}
-        <div style="margin-top: 4px; padding-top: 4px; border-top: 1px dashed #ccc;">Grand Total: ₹${parseFloat(showReceipt.total).toFixed(2)}</div>
+        <div style="font-size: 10px; font-weight: normal; margin-bottom: 2px;">Subtotal: â‚¹${subtotal.toFixed(2)}</div>
+        ${totDisc > 0 ? `<div style="font-size: 10px; font-weight: normal; margin-bottom: 2px;">Discount: -â‚¹${totDisc.toFixed(2)}</div>` : ''}
+        <div style="margin-top: 4px; padding-top: 4px; border-top: 1px dashed #ccc;">Grand Total: â‚¹${parseFloat(showReceipt.total).toFixed(2)}</div>
       </div>
     `;
 
@@ -782,8 +782,8 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
       if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
           files: [file],
-          title: 'Classy Couture Bill',
-          text: `Hi ${showReceipt.client.name}, here is your bill from Classy Couture.`
+          title: 'Malka Bill',
+          text: `Hi ${showReceipt.client.name}, here is your bill from Malka.`
         });
       } else {
         const url = URL.createObjectURL(pdfBlob);
@@ -860,11 +860,11 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                       <div>
                         <p className="text-[10px] font-bold uppercase text-[var(--muted)] tracking-wider">Item Details</p>
                         <p className="font-extrabold text-[var(--text)] text-lg mt-0.5">{orderDetail.product}</p>
-                        <p className="text-xs text-[var(--muted)]">{orderDetail.orderType} • Qty: {viewItem.qty}</p>
+                        <p className="text-xs text-[var(--muted)]">{orderDetail.orderType} â€¢ Qty: {viewItem.qty}</p>
                       </div>
                       <div className="text-right">
                         <p className="text-[10px] font-bold uppercase text-[var(--muted)] tracking-wider">Stitching Cost (Estimate)</p>
-                        <p className="font-black text-[var(--accent)] text-xl mt-0.5">₹{parseFloat(orderDetail.price || 0).toFixed(2)}</p>
+                        <p className="font-black text-[var(--accent)] text-xl mt-0.5">â‚¹{parseFloat(orderDetail.price || 0).toFixed(2)}</p>
                       </div>
                     </div>
                   </div>
@@ -880,13 +880,13 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                               <p className="font-bold text-[var(--text)]">{item.productName}</p>
                               <p className="text-[10px] text-[var(--muted)]">Qty: {item.quantity} {item.unit}</p>
                             </div>
-                            <p className="font-semibold text-[var(--accent)]">₹{(item.totalPrice || 0).toFixed(2)}</p>
+                            <p className="font-semibold text-[var(--accent)]">â‚¹{(item.totalPrice || 0).toFixed(2)}</p>
                           </div>
                         ))}
                       </div>
                       <div className="border-t border-dashed border-[var(--border)] pt-2.5 flex justify-between items-center text-xs font-bold text-[var(--accent)]">
                         <span>Materials Total</span>
-                        <span>₹{orderDetail.internalItems.reduce((sum, i) => sum + (i.totalPrice || 0), 0).toFixed(2)}</span>
+                        <span>â‚¹{orderDetail.internalItems.reduce((sum, i) => sum + (i.totalPrice || 0), 0).toFixed(2)}</span>
                       </div>
                     </div>
                   )}
@@ -965,7 +965,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                       </div>
                       <div className="text-right">
                         <p className="text-[10px] font-bold uppercase text-[var(--muted)] tracking-wider">Price (Per Unit)</p>
-                        <p className="font-black text-[var(--accent)] text-xl mt-0.5">₹{parseFloat(viewItem.finalPrice || viewItem.rate || 0).toFixed(2)}</p>
+                        <p className="font-black text-[var(--accent)] text-xl mt-0.5">â‚¹{parseFloat(viewItem.finalPrice || viewItem.rate || 0).toFixed(2)}</p>
                       </div>
                     </div>
                   </div>
@@ -1168,8 +1168,8 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
               <div id="printable-bill" className="mb-4 sm:mb-8 bg-white p-4 text-black shadow-inner overflow-hidden mx-auto shrink-0" style={{ width: '97mm', minHeight: '120mm', fontFamily: 'monospace' }}>
                 <div className="text-center mb-4 border-b-2 border-dashed border-gray-300 pb-4">
                   <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
-                  <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Classy Couture</h3>
-                  <p className="text-[10px] font-medium">Be Unique, Be Classy</p>
+                  <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
+                  <p className="text-[10px] font-medium">Be Unique, Be Malka</p>
                   <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
                   <div className="mt-2 text-gray-500">
                     <p className="!text-[10px]">Order ID: {showReceipt.saleId}</p>
@@ -1187,7 +1187,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                     <tr className="border-b border-dashed border-gray-300 text-left">
                       <th className="py-1 min-w-[100px] pr-2">Item</th>
                       <th className="py-1 text-center px-3">Qty</th>
-                      <th className="py-1 text-right px-3 whitespace-nowrap">Disc (₹/%)</th>
+                      <th className="py-1 text-right px-3 whitespace-nowrap">Disc (â‚¹/%)</th>
                       <th className="py-1 text-right pl-3 whitespace-nowrap">Total</th>
                     </tr>
                   </thead>
@@ -1197,15 +1197,15 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                         <td className="py-2 pr-2">
                           <p className="font-bold">{item.productName.replace(/\s*\(Order #[^)]+\)/g, '')}</p>
                           <div className="flex flex-col mt-0.5">
-                            <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: ₹{item.price || item.rate}</p>
+                            <p style={{ fontSize: '12px', fontWeight: 700 }} className="opacity-70">Rate: â‚¹{item.price || item.rate}</p>
                           </div>
                         </td>
                         <td className="py-2 text-center px-3">{item.qty}</td>
                         <td className="py-2 text-right px-3">
-                          {item.rowTotal !== undefined ? '₹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
+                          {item.rowTotal !== undefined ? 'â‚¹' : ''}{item.discount || 0}{item.rowTotal !== undefined ? '' : '%'}
                         </td>
                         <td className="py-2 text-right pl-3 font-bold">
-                          ₹{parseFloat(item.rowTotal || (item.qty * (item.price || item.rate)) - (item.discount || 0)).toFixed(2)}
+                          â‚¹{parseFloat(item.rowTotal || (item.qty * (item.price || item.rate)) - (item.discount || 0)).toFixed(2)}
                         </td>
                       </tr>
                     ))}
@@ -1215,7 +1215,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                 <div className="border-t-2 border-dashed border-gray-300 pt-3 space-y-1">
                   <div className="flex justify-between text-sm font-black">
                     <span>Grand Total</span>
-                    <span>₹{showReceipt.total}</span>
+                    <span>â‚¹{showReceipt.total}</span>
                   </div>
                 </div>
 
@@ -1326,7 +1326,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                       </div>
                       <div className="text-left">
                         <p className="text-xs font-black text-[var(--text)]">{o.product}</p>
-                        <p className="text-[10px] font-bold text-[var(--muted)]">Order #{o.id} • ₹{o.price}</p>
+                        <p className="text-[10px] font-bold text-[var(--muted)]">Order #{o.id} â€¢ â‚¹{o.price}</p>
                       </div>
                       <Plus size={16} className="text-[var(--accent)] transition-transform group-hover:rotate-90" />
                     </button>
@@ -1385,7 +1385,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                                 <p className="font-semibold">{p.productName}</p>
                                 <p className="text-xs text-[var(--muted)]">Stock: {p.quantity} {p.unit}</p>
                               </div>
-                              <p className="font-bold text-[var(--accent)]">₹{p.finalPrice}</p>
+                              <p className="font-bold text-[var(--accent)]">â‚¹{p.finalPrice}</p>
                             </button>
                           )) : (
                             <p className="p-4 text-center text-xs text-[var(--muted)]">No inventory items found.</p>
@@ -1405,7 +1405,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                                 <p className="font-semibold">{o.clientName}</p>
                                 <p className="text-xs text-[var(--muted)]">Order #{o.id} | {o.product}</p>
                               </div>
-                              <p className="font-bold text-[var(--accent)]">₹{o.price}</p>
+                              <p className="font-bold text-[var(--accent)]">â‚¹{o.price}</p>
                             </button>
                           )) : (
                             <p className="p-4 text-center text-xs text-[var(--muted)]">No completed orders found.</p>
@@ -1500,7 +1500,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                       </td>
                       <td>
                         <div className="flex items-center gap-1">
-                          <span className="text-[var(--muted)]">₹</span>
+                          <span className="text-[var(--muted)]">â‚¹</span>
                           <input
                             type="number"
                             className={`w-16 rounded-lg border bg-[var(--surface-strong)] px-2 py-1 font-bold text-[var(--text)] text-sm ${(parseFloat(item.finalPrice) || 0) <= 0 ? 'border-red-500/50 focus:border-red-500' : 'border-[var(--border)] focus:border-[var(--accent)]'}`}
@@ -1542,7 +1542,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                         )}
                       </td>
                       <td className="text-right font-bold text-[var(--accent)]">
-                        ₹{Math.max(0, ((parseFloat(item.finalPrice) || 0) * item.qty) - (parseFloat(item.discount) || 0) - (parseFloat(item.advancePaid) || 0)).toFixed(2)}
+                        â‚¹{Math.max(0, ((parseFloat(item.finalPrice) || 0) * item.qty) - (parseFloat(item.discount) || 0) - (parseFloat(item.advancePaid) || 0)).toFixed(2)}
                       </td>
                       <td className="text-right">
                         <div className="flex justify-end gap-1">
@@ -1705,7 +1705,7 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                     <div key={method} className="flex items-center gap-2">
                       <span className="text-xs font-semibold text-[var(--muted)] w-20">{method}</span>
                       <div className="relative flex-1">
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] font-bold">₹</span>
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)] font-bold">â‚¹</span>
                         <input
                           type="number"
                           className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface-strong)] py-2 pl-7 pr-3 text-sm font-bold outline-none focus:border-[var(--accent)]"
@@ -1718,9 +1718,9 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
                   ))}
                 </div>
                 <div className="mt-4 flex items-center justify-between border-t border-dashed border-[var(--border)] pt-3">
-                  <span className="text-xs font-bold text-[var(--muted)]">Allocated: ₹{Object.values(splitPayments).reduce((sum, v) => sum + (parseFloat(v) || 0), 0).toFixed(2)}</span>
+                  <span className="text-xs font-bold text-[var(--muted)]">Allocated: â‚¹{Object.values(splitPayments).reduce((sum, v) => sum + (parseFloat(v) || 0), 0).toFixed(2)}</span>
                   <span className={`text-xs font-bold ${Math.abs(Object.values(splitPayments).reduce((sum, v) => sum + (parseFloat(v) || 0), 0) - calculateTotals().total) < 0.01 ? 'text-green-500' : 'text-red-500'}`}>
-                    Remaining: ₹{(calculateTotals().total - Object.values(splitPayments).reduce((sum, v) => sum + (parseFloat(v) || 0), 0)).toFixed(2)}
+                    Remaining: â‚¹{(calculateTotals().total - Object.values(splitPayments).reduce((sum, v) => sum + (parseFloat(v) || 0), 0)).toFixed(2)}
                   </span>
                 </div>
               </div>
@@ -1732,23 +1732,23 @@ function CreateSalesPage({ themeStyle, setCurrentPage, showGlobalToast, inventor
               </div>
               <div className="flex justify-between border-t border-[var(--border)] pt-4 mt-2">
                 <span className="text-[var(--muted)]">Total Amount</span>
-                <span className="font-semibold">₹{calculateTotals().subtotal.toFixed(2)}</span>
+                <span className="font-semibold">â‚¹{calculateTotals().subtotal.toFixed(2)}</span>
               </div>
               {calculateTotals().discount > 0 && (
                 <div className="flex justify-between">
                   <span className="text-[var(--muted)]">Total Discount</span>
-                  <span className="font-semibold text-red-500">- ₹{calculateTotals().discount.toFixed(2)}</span>
+                  <span className="font-semibold text-red-500">- â‚¹{calculateTotals().discount.toFixed(2)}</span>
                 </div>
               )}
               {calculateTotals().advance > 0 && (
                 <div className="flex justify-between">
                   <span className="text-[var(--muted)]">Advance Paid</span>
-                  <span className="font-semibold text-green-600">- ₹{calculateTotals().advance.toFixed(2)}</span>
+                  <span className="font-semibold text-green-600">- â‚¹{calculateTotals().advance.toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between border-t border-dashed border-[var(--border)] pt-4 mt-2">
                 <span className="text-lg font-bold">Balance (Grand Total)</span>
-                <span className="text-3xl font-black text-[var(--accent)]">₹{calculateTotals().total.toFixed(2)}</span>
+                <span className="text-3xl font-black text-[var(--accent)]">â‚¹{calculateTotals().total.toFixed(2)}</span>
               </div>
               <button
                 onClick={handleCheckout}

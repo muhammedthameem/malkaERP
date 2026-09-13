@@ -20,7 +20,7 @@ self.addEventListener('push', (event) => {
     }
   }
 
-  const title = data.title || 'ClassyERP Alert';
+  const title = data.title || 'MalkaERP Alert';
   const options = {
     body: data.body || 'You have a new alert.',
     icon: '/logo192.png',

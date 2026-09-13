@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 
-const SECRET_KEY = 'classyerp_secure_link_key_2026';
+const SECRET_KEY = 'MalkaERP_secure_link_key_2026';
 
 /**
  * Encrypts an ID (like SALE-1234) into a URL-safe string.

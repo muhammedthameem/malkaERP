@@ -10,7 +10,7 @@ export async function sendWhatsApp(phone, customerName, orderId) {
 
     if (!formattedPhone) return;
 
-    const messageText = `Hi ${customerName || 'Customer'} Your Item (${orderId}) ready for delivery please collect it\n\nThank you\nClassy Couture`;
+    const messageText = `Hi ${customerName || 'Customer'} Your Item (${orderId}) ready for delivery please collect it\n\nThank you\nMalka`;
 
     try {
         const response = await fetch(

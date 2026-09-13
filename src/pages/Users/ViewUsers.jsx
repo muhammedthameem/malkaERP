@@ -333,7 +333,7 @@ function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designatio
 
             <h3 className="text-2xl font-bold text-[var(--text)]">Delete User?</h3>
             <p className="mt-3 text-[var(--muted)] leading-relaxed">
-              Are you sure you want to delete <span className="font-bold text-[var(--text)]">{userToDelete.name}</span>? This action will permanently remove their access to the Classy ERP system.
+              Are you sure you want to delete <span className="font-bold text-[var(--text)]">{userToDelete.name}</span>? This action will permanently remove their access to the Malka ERP system.
             </p>
             <div className="mt-8 flex gap-3">
               <button

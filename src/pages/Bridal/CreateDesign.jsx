@@ -147,7 +147,7 @@ function CreateDesignPage({ themeStyle, setCurrentPage, showGlobalToast, editing
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    const savedDraft = localStorage.getItem('classyERP_bridal_draft');
+    const savedDraft = localStorage.getItem('MalkaERP_bridal_draft');
 
     if (editingDesign && editingDesign.image && history.length === 0) {
       const img = new Image();
@@ -200,7 +200,7 @@ function CreateDesignPage({ themeStyle, setCurrentPage, showGlobalToast, editing
         selectionLayers
       };
       try {
-        localStorage.setItem('classyERP_bridal_draft', JSON.stringify(draft));
+        localStorage.setItem('MalkaERP_bridal_draft', JSON.stringify(draft));
       } catch (e) {
         console.warn('Failed to save draft to local storage due to quota.');
       }
@@ -593,7 +593,7 @@ function CreateDesignPage({ themeStyle, setCurrentPage, showGlobalToast, editing
       const { error } = await supabase.from('erp_config').upsert([{ id: designId, data: designData }]);
       if (error) throw error;
 
-      localStorage.removeItem('classyERP_bridal_draft'); // Clear draft on successful save
+      localStorage.removeItem('MalkaERP_bridal_draft'); // Clear draft on successful save
       if (showGlobalToast) showGlobalToast('Design Saved', 'Saved locally and uploaded.');
       setShowSaveModal(false);
       setEditingDesign(null);

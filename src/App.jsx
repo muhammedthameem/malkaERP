@@ -3,7 +3,7 @@ import LoginScreen from './components/LoginScreen'
 import Dashboard from './components/Dashboard'
 import DeliveryAlertModal from './components/DeliveryAlertModal'
 import PublicReceipt from './components/PublicReceipt'
-import ClassyAI from './components/ClassyAI'
+import MalkaAI from './components/MalkaAI'
 import { boutiqueThemes, appearanceTokens } from './utils/constants'
 import supabase from './supabase'
 import IOSInstallPrompt from './components/IOSInstallPrompt';
@@ -598,9 +598,9 @@ function App() {
                 if (error) console.error("Activity Save Failed:", error);
               }}
             />
-            {/* Classy AI Digital Manager - Only for Admin/Owner (Currently Hidden) */}
+            {/* Malka AI Digital Manager - Only for Admin/Owner (Currently Hidden) */}
             {false && (user?.role === 'Admin' || user?.role === 'Owner') && (
-              <ClassyAI
+              <MalkaAI
                 user={user}
                 isAdmin={user?.role === 'Admin' || user?.role === 'Owner'}
                 clients={clients}

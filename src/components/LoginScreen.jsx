@@ -72,7 +72,7 @@ function LoginScreen({ onLogin, users: cloudUsers }) {
     try {
       // 1. Official Supabase Auth Login
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-        email: email.toLowerCase(),
+        email: email.toLowerCase().trim(),
         password: password
       });
 
@@ -116,7 +116,7 @@ function LoginScreen({ onLogin, users: cloudUsers }) {
 
     setTimeout(() => {
       const allUsers = JSON.parse(localStorage.getItem('erp_users') || '[]')
-      const exists = allUsers.some(u => u.email.toLowerCase() === email.toLowerCase()) || email.toLowerCase() === 'admin@classy.com'
+      const exists = allUsers.some(u => u.email.toLowerCase() === email.toLowerCase()) || email.toLowerCase() === 'admin@malka.com'
 
       if (exists) {
         setMessage('Password reset request accepted. Please contact the boutique owner to reset access.')
@@ -143,7 +143,7 @@ function LoginScreen({ onLogin, users: cloudUsers }) {
             </div>
             <div>
               <p className="text-sm uppercase tracking-[0.28em] text-white/80">
-                Classy Couture
+                Malka
               </p>
               <h1 className="text-2xl font-semibold">Boutique ERP System</h1>
             </div>
@@ -176,7 +176,7 @@ function LoginScreen({ onLogin, users: cloudUsers }) {
               <img src="/logo-black.png" alt="CB" className="h-full w-full object-contain" />
             </div>
             <p className="text-sm uppercase tracking-[0.28em] text-[var(--accent)] font-bold">
-              Classy Couture
+              Malka
             </p>
           </div>
 

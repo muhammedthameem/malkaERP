@@ -98,7 +98,7 @@ const IOSInstallPrompt = () => {
                 <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 border-4 border-white rounded-full shadow-sm"></div>
               </div>
 
-              <h3 className="text-2xl font-black text-[#2a211d] tracking-tight mb-2">Install Classy ERP</h3>
+              <h3 className="text-2xl font-black text-[#2a211d] tracking-tight mb-2">Install Malka ERP</h3>
               <p className="text-[#5d5450] text-sm font-medium leading-relaxed px-4 mb-8">
                 Install this app on your iPhone for a faster, full-screen experience and offline access.
               </p>
