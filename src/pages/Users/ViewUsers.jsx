@@ -3,7 +3,7 @@ import { Search, Eye, Pencil, Trash2, ChevronDown, Plus } from 'lucide-react'
 import { Virtuoso } from 'react-virtuoso'
 import supabase from '../../supabase'
 
-function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designations, setDesignations, showGlobalToast, currentUser, cloudLoaded }) {
+function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designations, setDesignations, showGlobalToast, currentUser, cloudLoaded, deleteUser }) {
   const [searchTerm, setSearchTerm] = useState('')
   const [viewUser, setViewUser] = useState(null)
   const [editUser, setEditUser] = useState(null)
@@ -20,14 +20,15 @@ function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designatio
   const handleConfirmDelete = async () => {
     if (!userToDelete) return
     const id = userToDelete.id
+    const targetEmail = (userToDelete.email || userToDelete.id || '').toLowerCase()
     
     // Security checks
-    if (userToDelete.designation === 'Admin') {
+    if (userToDelete.designation === 'Admin' || userToDelete.role === 'Admin') {
       if (showGlobalToast) showGlobalToast('Error', 'Admin accounts cannot be deleted.')
       setUserToDelete(null)
       return
     }
-    if (currentUser && id === currentUser.id) {
+    if (currentUser && (id === currentUser.id || targetEmail === (currentUser.email || '').toLowerCase())) {
       if (showGlobalToast) showGlobalToast('Error', 'You cannot delete yourself.')
       setUserToDelete(null)
       return
@@ -35,15 +36,51 @@ function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designatio
 
     // --- INSTANT UI UPDATE (Optimistic) ---
     const originalUsers = [...users];
-    setUsers(users.filter(u => u.id !== id));
+    setUsers(users.filter(u => u.id !== id && (u.email || '').toLowerCase() !== targetEmail));
     setUserToDelete(null); // Close modal instantly
 
     try {
-      // Tell cloud to delete in background using our secure function
-      const { error } = await supabase.rpc('delete_user', { user_email: id });
-      if (error) throw error;
+      let cloudDeleted = false;
+
+      // 1. Try secure RPC delete (if delete_user function exists in Supabase)
+      try {
+        const { error: rpcError } = await supabase.rpc('delete_user', { user_email: targetEmail });
+        if (!rpcError) {
+          cloudDeleted = true;
+        } else if (rpcError.code !== 'PGRST202' && !rpcError.message?.toLowerCase().includes('could not find')) {
+          console.warn("RPC delete_user error:", rpcError.message);
+        }
+      } catch (rpcEx) {
+        console.warn("RPC delete_user call exception:", rpcEx);
+      }
+
+      // 2. Direct table deletion fallback from erp_users
+      if (!cloudDeleted) {
+        // In erp_users, the row primary key 'id' is the user's email
+        const { error: dbError } = await supabase
+          .from('erp_users')
+          .delete()
+          .eq('id', targetEmail);
+
+        if (dbError && id && id !== targetEmail) {
+          const { error: idError } = await supabase
+            .from('erp_users')
+            .delete()
+            .eq('id', id);
+          if (idError) throw dbError;
+        } else if (dbError) {
+          throw dbError;
+        }
+      }
+
+      // 3. Notify parent deleteUser handler if provided
+      if (deleteUser) {
+        try {
+          await deleteUser(userToDelete);
+        } catch (_) {}
+      }
       
-      if (showGlobalToast) showGlobalToast('Success', `${userToDelete.name} successfully deleted`)
+      if (showGlobalToast) showGlobalToast('Success', `${userToDelete.name || 'User'} successfully deleted`)
     } catch (error) {
       // ROLLBACK: If cloud fails, put the user back
       setUsers(originalUsers);
@@ -85,6 +122,7 @@ function ViewUsersPage({ themeStyle, setCurrentPage, users, setUsers, designatio
 
   const uniqueUsersMap = new Map()
   users.forEach(u => {
+    if ((u.email || '').toLowerCase().includes('@classy.com')) return;
     if (!uniqueUsersMap.has(u.email) || (u.updatedAt && new Date(u.updatedAt) > new Date(uniqueUsersMap.get(u.email).updatedAt || 0))) {
       uniqueUsersMap.set(u.email, u)
     }

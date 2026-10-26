@@ -85,21 +85,27 @@ function LoginScreen({ onLogin, users: cloudUsers }) {
         .eq('id', email.toLowerCase())
         .single();
 
-      if (userData) {
+      if (userData && userData.data) {
         onLogin({
-          id: userData.data.id,
+          id: userData.data.id || userData.data.email,
           email: userData.data.email,
           name: userData.data.name,
           role: userData.data.designation || 'Staff'
         })
       } else {
-        // Fallback for first-time Admin setup or if profile missing
-        onLogin({
-          id: authData.user.id,
-          email: authData.user.email,
-          name: authData.user.email.split('@')[0],
-          role: 'Admin'
-        })
+        // Fallback for first-time Admin setup or master admin
+        const isMasterAdmin = email.toLowerCase().includes('admin');
+        if (isMasterAdmin) {
+          onLogin({
+            id: authData.user.id,
+            email: authData.user.email,
+            name: authData.user.email.split('@')[0],
+            role: 'Admin'
+          })
+        } else {
+          await supabase.auth.signOut();
+          throw new Error('This user account has been deleted or deactivated. Contact the system administrator.');
+        }
       }
     } catch (error) {
       console.error("Login Error:", error.message);

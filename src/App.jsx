@@ -47,7 +47,18 @@ const idb = {
 function App() {
   const [isAuthLoading, setIsAuthLoading] = useState(true);
   // SHARED STATES
-  const [users, setUsers] = useState(() => { try { return JSON.parse(localStorage.getItem('erp_users') || '[]') } catch (e) { return [] } })
+  const [users, setUsers] = useState(() => {
+    try {
+      const stored = JSON.parse(localStorage.getItem('erp_users') || '[]');
+      const sanitized = stored.filter(u => !(u.email || '').toLowerCase().includes('@classy.com'));
+      if (sanitized.length !== stored.length) {
+        try { localStorage.setItem('erp_users', JSON.stringify(sanitized)); } catch (_) {}
+      }
+      return sanitized;
+    } catch (e) {
+      return [];
+    }
+  })
   const [designations, setDesignations] = useState(() => { try { return JSON.parse(localStorage.getItem('erp_designations') || '[]') } catch (e) { return [] } })
   const [clients, setClients] = useState(() => { try { return JSON.parse(localStorage.getItem('clients') || '[]') } catch (e) { return [] } })
   const [orders, setOrders] = useState(() => { try { return JSON.parse(localStorage.getItem('orders') || '[]') } catch (e) { return [] } })
@@ -131,7 +142,7 @@ function App() {
 
         setSyncError(null);
         retryCount = 0;
-        if (u.data) setUsers(u.data.map(item => item.data || item));
+        if (u.data) setUsers(u.data.map(item => item.data || item).filter(user => !(user.email || '').toLowerCase().includes('@classy.com')));
         if (c.data) setClients(c.data.map(item => item.data || item));
         if (o.data) setOrders(o.data.map(item => item.data || item));
         if (s.data) setSales(s.data.map(item => item.data || item));
@@ -310,12 +321,21 @@ function App() {
               role: profile.designation || 'Staff'
             });
           } else {
-            setUser({ 
-              id: session.user.id, 
-              email: session.user.email, 
-              name: session.user.email.split('@')[0], 
-              role: 'Admin' 
-            });
+            const isMasterAdmin = (session.user.email || '').toLowerCase().includes('admin');
+            if (isMasterAdmin) {
+              setUser({ 
+                id: session.user.id, 
+                email: session.user.email, 
+                name: session.user.email.split('@')[0], 
+                role: 'Admin' 
+              });
+            } else {
+              await supabase.auth.signOut();
+              setUser(null);
+              setIsLoggedIn(false);
+              setIsAuthLoading(false);
+              return;
+            }
           }
           setIsLoggedIn(true);
         }
@@ -572,6 +592,18 @@ function App() {
                 const clean = (obj) => JSON.parse(JSON.stringify(obj, (k, v) => v === "" ? undefined : v));
                 const { error } = await supabase.from('erp_users').upsert([{ id: u.email, data: clean(u) }]);
                 if (error) console.error("Save Failed: ", error.message);
+              }}
+              deleteUser={async (u) => {
+                const email = (u?.email || u?.id || (typeof u === 'string' ? u : '')).toLowerCase();
+                const id = u?.id;
+                try {
+                  const { error: rpcErr } = await supabase.rpc('delete_user', { user_email: email });
+                  if (!rpcErr) return;
+                } catch (_) {}
+                const { error: delErr } = await supabase.from('erp_users').delete().eq('id', email);
+                if (delErr && id && id !== email) {
+                  await supabase.from('erp_users').delete().eq('id', id);
+                }
               }}
               deleteClient={async (id) => {
                 if (!id) return;

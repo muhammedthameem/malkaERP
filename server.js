@@ -5,8 +5,8 @@ const app = express()
 const PORT = 5000
 
 let adminUser = {
-  email: 'admin@classy.com',
-  password: 'admin123',
+  email: 'admin@malka.com',
+  password: 'malka@123',
 }
 
 app.use(cors())
@@ -15,7 +15,7 @@ app.use(express.json())
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
 
 app.get('/api/health', (_request, response) => {
-  response.json({ ok: true, service: 'Classy Boutique API' })
+  response.json({ ok: true, service: 'Malka Boutique API' })
 })
 
 app.post('/api/login', (request, response) => {
@@ -31,7 +31,7 @@ app.post('/api/login', (request, response) => {
 
   return response.json({
     message: 'Login successful.',
-    user: { email: adminUser.email, name: 'Ayesha' },
+    user: { email: adminUser.email, name: 'Admin' },
   })
 })
 
@@ -72,5 +72,5 @@ app.post('/api/change-password', (request, response) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Classy Boutique API running on http://127.0.0.1:${PORT}`)
+  console.log(`Malka Boutique API running on http://127.0.0.1:${PORT}`)
 })

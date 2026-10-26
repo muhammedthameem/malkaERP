@@ -46,7 +46,7 @@ function Dashboard({
   orderLimits, setOrderLimits,
   cloudLoaded,
   syncError,
-  saveSale, saveOrder, saveClient, saveUser, deleteClient, deleteOrder, saveConfig, saveActivity, saveInventory,
+  saveSale, saveOrder, saveClient, saveUser, deleteUser, deleteClient, deleteOrder, saveConfig, saveActivity, saveInventory,
   selectedClient, setSelectedClient, clientDetailMode, setClientDetailMode,
   staffList, setStaffList,
   themeStyle
@@ -1614,7 +1614,7 @@ function Dashboard({
               {currentPage === 'view-accounts' && <ViewAccountsPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} currentUser={user} highlightAccountId={highlightAccountId} setHighlightAccountId={setHighlightAccountId} refreshAccounts={fetchAllAccountsData} setHighlightOrderId={setHighlightOrderId} setHighlightSaleId={setHighlightSaleId} />}
               {currentPage === 'reports' && <ReportsPage themeStyle={themeStyle} showGlobalToast={showGlobalToast} currentUser={user} sales={sales} orders={orders} clients={clients} inventory={inventory} cloudLoaded={cloudLoaded} />}
               {currentPage === 'create-user' && <CreateUserPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} users={users} setUsers={setUsers} designations={designations} setDesignations={setDesignations} currentUser={user} saveUser={saveUser} cloudLoaded={cloudLoaded} />}
-              {currentPage === 'view-users' && <ViewUsersPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} users={users} setUsers={setUsers} designations={designations} setDesignations={setDesignations} currentUser={user} cloudLoaded={cloudLoaded} />}
+              {currentPage === 'view-users' && <ViewUsersPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} users={users} setUsers={setUsers} designations={designations} setDesignations={setDesignations} currentUser={user} cloudLoaded={cloudLoaded} deleteUser={deleteUser} />}
               {currentPage === 'create-design' && <CreateDesignPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} editingDesign={editingDesign} setEditingDesign={setEditingDesign} />}
               {currentPage === 'design-library' && <DesignLibraryPage themeStyle={themeStyle} setCurrentPage={setCurrentPage} showGlobalToast={showGlobalToast} setEditingDesign={setEditingDesign} />}
             </Suspense>
