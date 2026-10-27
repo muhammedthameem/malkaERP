@@ -822,6 +822,14 @@ function ViewOrdersPage({ themeStyle, setCurrentPage, setSelectedClient, setClie
                 if (totalItems === 0) return null;
 
                 const formatKey = (str) => {
+                  if (str === 'armRoundRound') return 'Arm Round';
+                  if (str === 'armRoundLength') return 'Arm Round Length';
+                  if (str === 'bicepsRound') return 'Biceps Round';
+                  if (str === 'bicepsLength') return 'Biceps Length';
+                  if (str === 'sleeveLengthLength') return 'Sleeve Length';
+                  if (str === 'sleeveLengthRound') return 'Sleeve Length Round';
+                  if (str === 'sleeveRoundLength') return 'Sleeve Round Length';
+                  if (str === 'sleeveRoundRound') return 'Sleeve Round';
                   return str.replace(/([A-Z])/g, ' $1').trim();
                 };
 

@@ -1056,7 +1056,7 @@ function StaffManagementPage({ themeStyle, setCurrentPage, showGlobalToast, staf
               <img src="/logo-black.png" alt="Logo" style={{ width: '112px', height: '128px', margin: '0 auto 16px auto', objectFit: 'contain', display: 'block' }} />
               <h3 style={{ textTransform: 'uppercase', letterSpacing: '-0.025em', fontSize: '24px', fontWeight: '800', margin: '0', color: '#111' }}>Malka</h3>
               <p style={{ fontSize: '12px', fontWeight: '500', margin: '4px 0 2px' }}>Your Complete Destination For Timeless Style</p>
-              <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
+              <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 6238047081</p>
               <p style={{ margin: '16px 0 0', color: '#444', fontSize: '16px', fontWeight: 'bold', textTransform: 'uppercase' }}>Official Payslip Record</p>
             </div>
 

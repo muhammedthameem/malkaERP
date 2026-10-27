@@ -207,8 +207,21 @@ function ViewClientsPage({ themeStyle, setCurrentPage, setSelectedClient, setCli
           }
 
           fields.forEach(f => {
-            const l = measurementsObj[`${f.key}Length`]
-            const r = measurementsObj[`${f.key}Round`]
+            let l = measurementsObj[`${f.key}Length`]
+            let r = measurementsObj[`${f.key}Round`]
+            if (f.key === 'sleeveLength') {
+              l = measurementsObj.sleeveLengthLength || measurementsObj.sleeveLength || ''
+              r = measurementsObj.sleeveLengthRound || ''
+            } else if (f.key === 'sleeveRound') {
+              l = measurementsObj.sleeveRoundLength || ''
+              r = measurementsObj.sleeveRoundRound || measurementsObj.sleeveRound || ''
+            } else if (f.key === 'biceps') {
+              l = measurementsObj.bicepsLength || ''
+              r = measurementsObj.bicepsRound || measurementsObj.biceps || ''
+            } else if (f.key === 'armRound') {
+              l = measurementsObj.armRoundLength || ''
+              r = measurementsObj.armRoundRound || measurementsObj.armRound || ''
+            }
             if (l || r) {
               hasRows = true;
               tableHtml += `<tr style="background-color: ${rowIndex % 2 === 0 ? '#ffffff' : '#f9fafb'};">
@@ -227,8 +240,13 @@ function ViewClientsPage({ themeStyle, setCurrentPage, setSelectedClient, setCli
         const topFields = [
           { key: 'upChest', label: 'Up-Chest' }, { key: 'chest', label: 'Chest' }, { key: 'bust', label: 'Bust' },
           { key: 'waist', label: 'Waist' }, { key: 'hip', label: 'Hip' }, { key: 'shoulder', label: 'Shoulder' },
-          { key: 'front', label: 'Front' }, { key: 'back', label: 'Back' }, { key: 'neckF', label: 'Neck F' },
-          { key: 'neckB', label: 'Neck B' }, { key: 'halfSleeves', label: 'Half Sleeves' }, { key: 'fullSleeves', label: 'Full Sleeves' },
+          { key: 'yoke', label: 'Yoke' }, { key: 'front', label: 'Front' }, { key: 'back', label: 'Back' }, 
+          { key: 'neckF', label: 'Neck F' }, { key: 'neckB', label: 'Neck B' },
+          { key: 'sleeveLength', label: 'Sleeve Length' },
+          { key: 'sleeveRound', label: 'Sleeve Round' },
+          { key: 'biceps', label: 'Biceps' },
+          { key: 'armRound', label: 'Arm Round' },
+          { key: 'halfSleeves', label: 'Half Sleeves' }, { key: 'fullSleeves', label: 'Full Sleeves' },
           { key: 'threeQuarterSleeves', label: '3/4 Sleeves' }, { key: 'elbow', label: 'Elbow' }
         ]
         html += renderTable('Top Measurements', m.topMeasurements, topFields)

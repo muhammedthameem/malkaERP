@@ -4,6 +4,28 @@ import { formatDateDDMMYY, formatDateTimeDDMMYY, products } from '../../utils/co
 import supabase from '../../supabase'
 import { compressImage } from '../../utils/imageCompression'
 
+const topFields = [
+  { key: 'upChest', label: 'Up-Chest' },
+  { key: 'chest', label: 'Chest' },
+  { key: 'bust', label: 'Bust' },
+  { key: 'waist', label: 'Waist' },
+  { key: 'hip', label: 'Hip' },
+  { key: 'shoulder', label: 'Shoulder' },
+  { key: 'yoke', label: 'Yoke' },
+  { key: 'front', label: 'Front' },
+  { key: 'back', label: 'Back' },
+  { key: 'neckF', label: 'Neck F' },
+  { key: 'neckB', label: 'Neck B' },
+  { key: 'sleeveLength', label: 'Sleeve Length' },
+  { key: 'sleeveRound', label: 'Sleeve Round' },
+  { key: 'biceps', label: 'Biceps' },
+  { key: 'armRound', label: 'Arm Round' },
+  { key: 'halfSleeves', label: 'Half Sleeves' },
+  { key: 'fullSleeves', label: 'Full Sleeves' },
+  { key: 'threeQuarterSleeves', label: '3/4 Sleeves' },
+  { key: 'elbow', label: 'Elbow' }
+]
+
 function ClientDetailPage({ themeStyle, client, setCurrentPage, setSelectedClient, initialMode, setClientDetailMode, showGlobalToast, currentUser, clients, setClients, saveClient, deleteClient, productTypes = [], setProductTypes, saveConfig }) {
   const [clientsList, setClientsList] = useState([])
   const [showClientDropdown, setShowClientDropdown] = useState(false)
@@ -25,7 +47,28 @@ function ClientDetailPage({ themeStyle, client, setCurrentPage, setSelectedClien
   })
   const [showMeasurementDropdown, setShowMeasurementDropdown] = useState(false)
 
-  const defaultTop = { length: '', upChestLength: '', upChestRound: '', chestLength: '', chestRound: '', bustLength: '', bustRound: '', waistLength: '', waistRound: '', hipLength: '', hipRound: '', shoulderLength: '', shoulderRound: '', armRoundLength: '', armRoundRound: '', yokeLength: '', yokeRound: '', frontLength: '', frontRound: '', backLength: '', backRound: '', neckFLength: '', neckFRound: '', neckBLength: '', neckBRound: '', halfSleevesLength: '', halfSleevesRound: '', fullSleevesLength: '', fullSleevesRound: '', threeQuarterSleevesLength: '', threeQuarterSleevesRound: '', elbowLength: '', elbowRound: '' }
+  const defaultTop = {
+    length: '',
+    upChestLength: '', upChestRound: '',
+    chestLength: '', chestRound: '',
+    bustLength: '', bustRound: '',
+    waistLength: '', waistRound: '',
+    hipLength: '', hipRound: '',
+    shoulderLength: '', shoulderRound: '',
+    yokeLength: '', yokeRound: '',
+    frontLength: '', frontRound: '',
+    backLength: '', backRound: '',
+    neckFLength: '', neckFRound: '',
+    neckBLength: '', neckBRound: '',
+    sleeveLengthLength: '', sleeveLengthRound: '', sleeveLength: '',
+    sleeveRoundLength: '', sleeveRoundRound: '', sleeveRound: '',
+    bicepsLength: '', bicepsRound: '', biceps: '',
+    armRoundLength: '', armRoundRound: '', armRound: '',
+    halfSleevesLength: '', halfSleevesRound: '',
+    fullSleevesLength: '', fullSleevesRound: '',
+    threeQuarterSleevesLength: '', threeQuarterSleevesRound: '',
+    elbowLength: '', elbowRound: ''
+  }
   const defaultBottom = { length: '', waistLength: '', waistRound: '', hipLength: '', hipRound: '', thighsLength: '', thighsRound: '', kneeLength: '', kneeRound: '', calfLength: '', calfRound: '', ankleLength: '', ankleRound: '', crotchLength: '', crotchRound: '' }
 
   const [isAddingMeasurement, setIsAddingMeasurement] = useState(false)
@@ -79,7 +122,12 @@ function ClientDetailPage({ themeStyle, client, setCurrentPage, setSelectedClien
       if (initialMode === 'edit' || isEditingClient) {
         setProduct(current.product || '')
         setProductSearch(current.product || '')
-        setTopMeasurements({ ...defaultTop, ...current.topMeasurements })
+        const loadedTop = { ...defaultTop, ...current.topMeasurements }
+        if (!loadedTop.sleeveLength && loadedTop.sleeveLengthLength) loadedTop.sleeveLength = loadedTop.sleeveLengthLength
+        if (!loadedTop.sleeveRound && loadedTop.sleeveRoundRound) loadedTop.sleeveRound = loadedTop.sleeveRoundRound
+        if (!loadedTop.bicepsRound && loadedTop.biceps) loadedTop.bicepsRound = loadedTop.biceps
+        if (!loadedTop.armRoundRound && loadedTop.armRound) loadedTop.armRoundRound = loadedTop.armRound
+        setTopMeasurements(loadedTop)
         setBottomMeasurements({ ...defaultBottom, ...current.bottomMeasurements })
         setNote(current.note || '')
       } else if (!isAddingMeasurement) {
@@ -795,40 +843,41 @@ function ClientDetailPage({ themeStyle, client, setCurrentPage, setSelectedClien
                   </div>
                   <div></div>
                 </div>
-                {[
-                  { key: 'upChest', label: 'Up-Chest' },
-                  { key: 'chest', label: 'Chest' },
-                  { key: 'bust', label: 'Bust' },
-                  { key: 'waist', label: 'Waist' },
-                  { key: 'hip', label: 'Hip' },
-                  { key: 'shoulder', label: 'Shoulder' },
-                  { key: 'armRound', label: 'Arm Round' },
-                  { key: 'yoke', label: 'Yoke' },
-                  { key: 'front', label: 'Front' },
-                  { key: 'back', label: 'Back' },
-                  { key: 'neckF', label: 'Neck F' },
-                  { key: 'neckB', label: 'Neck B' },
-                  { key: 'halfSleeves', label: 'Half Sleeves' },
-                  { key: 'fullSleeves', label: 'Full Sleeves' },
-                  { key: 'threeQuarterSleeves', label: '3/4 Sleeves' },
-                  { key: 'elbow', label: 'Elbow' }
-                ].map((field) => (
-                  <div key={field.key} className="measurement-row">
-                    <span className="measurement-label">{field.label}</span>
-                    <div className="measurement-input-group">
-                      <span className="measurement-input-label">Length</span>
-                      <span className="rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-center text-sm font-semibold text-[var(--text)]">
-                        {currentMeasurement.topMeasurements?.[`${field.key}Length`] || '-'}
-                      </span>
+                {topFields.map((field) => {
+                  let lenVal = currentMeasurement.topMeasurements?.[`${field.key}Length`] || '';
+                  let rndVal = currentMeasurement.topMeasurements?.[`${field.key}Round`] || '';
+                  if (field.key === 'sleeveLength') {
+                    lenVal = currentMeasurement.topMeasurements?.sleeveLengthLength || currentMeasurement.topMeasurements?.sleeveLength || '';
+                    rndVal = currentMeasurement.topMeasurements?.sleeveLengthRound || '';
+                  } else if (field.key === 'sleeveRound') {
+                    lenVal = currentMeasurement.topMeasurements?.sleeveRoundLength || '';
+                    rndVal = currentMeasurement.topMeasurements?.sleeveRoundRound || currentMeasurement.topMeasurements?.sleeveRound || '';
+                  } else if (field.key === 'biceps') {
+                    lenVal = currentMeasurement.topMeasurements?.bicepsLength || '';
+                    rndVal = currentMeasurement.topMeasurements?.bicepsRound || currentMeasurement.topMeasurements?.biceps || '';
+                  } else if (field.key === 'armRound') {
+                    lenVal = currentMeasurement.topMeasurements?.armRoundLength || '';
+                    rndVal = currentMeasurement.topMeasurements?.armRoundRound || currentMeasurement.topMeasurements?.armRound || '';
+                  }
+
+                  return (
+                    <div key={field.key} className="measurement-row">
+                      <span className="measurement-label">{field.label}</span>
+                      <div className="measurement-input-group">
+                        <span className="measurement-input-label">Length</span>
+                        <span className="rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-center text-sm font-semibold text-[var(--text)]">
+                          {lenVal || '-'}
+                        </span>
+                      </div>
+                      <div className="measurement-input-group">
+                        <span className="measurement-input-label">Round</span>
+                        <span className="rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-center text-sm font-semibold text-[var(--text)]">
+                          {rndVal || '-'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="measurement-input-group">
-                      <span className="measurement-input-label">Round</span>
-                      <span className="rounded-lg border border-[var(--border)] bg-[var(--surface-strong)] px-3 py-2 text-center text-sm font-semibold text-[var(--text)]">
-                        {currentMeasurement.topMeasurements?.[`${field.key}Round`] || '-'}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
                 </div>
               </div>
             </section>
@@ -1064,48 +1113,75 @@ function ClientDetailPage({ themeStyle, client, setCurrentPage, setSelectedClien
                     </div>
                     <div></div>
                   </div>
-                  {[
-                    { key: 'upChest', label: 'Up-Chest' },
-                    { key: 'chest', label: 'Chest' },
-                    { key: 'bust', label: 'Bust' },
-                    { key: 'waist', label: 'Waist' },
-                    { key: 'hip', label: 'Hip' },
-                    { key: 'shoulder', label: 'Shoulder' },
-                    { key: 'armRound', label: 'Arm Round' },
-                    { key: 'yoke', label: 'Yoke' },
-                    { key: 'front', label: 'Front' },
-                    { key: 'back', label: 'Back' },
-                    { key: 'neckF', label: 'Neck F' },
-                    { key: 'neckB', label: 'Neck B' },
-                    { key: 'halfSleeves', label: 'Half Sleeves' },
-                    { key: 'fullSleeves', label: 'Full Sleeves' },
-                    { key: 'threeQuarterSleeves', label: '3/4 Sleeves' },
-                    { key: 'elbow', label: 'Elbow' }
-                  ].map((field) => (
-                    <div key={field.key} className="measurement-row">
-                      <span className="measurement-label">{field.label}</span>
-                      <div className="measurement-input-group">
-                        <span className="measurement-input-label">Length</span>
-                        <input
-                          className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-center outline-none transition focus:border-[var(--accent)]"
-                          type="text"
-                          value={topMeasurements[`${field.key}Length`] || ''}
-                          onChange={(e) => setTopMeasurements({ ...topMeasurements, [`${field.key}Length`]: e.target.value })}
-                          placeholder="Length" inputMode="decimal"
-                        />
+                  {topFields.map((field) => {
+                    let lenVal = topMeasurements[`${field.key}Length`] || '';
+                    let rndVal = topMeasurements[`${field.key}Round`] || '';
+                    if (field.key === 'sleeveLength') {
+                      lenVal = topMeasurements.sleeveLengthLength || topMeasurements.sleeveLength || '';
+                      rndVal = topMeasurements.sleeveLengthRound || '';
+                    } else if (field.key === 'sleeveRound') {
+                      lenVal = topMeasurements.sleeveRoundLength || '';
+                      rndVal = topMeasurements.sleeveRoundRound || topMeasurements.sleeveRound || '';
+                    } else if (field.key === 'biceps') {
+                      lenVal = topMeasurements.bicepsLength || '';
+                      rndVal = topMeasurements.bicepsRound || topMeasurements.biceps || '';
+                    } else if (field.key === 'armRound') {
+                      lenVal = topMeasurements.armRoundLength || '';
+                      rndVal = topMeasurements.armRoundRound || topMeasurements.armRound || '';
+                    }
+
+                    return (
+                      <div key={field.key} className="measurement-row">
+                        <span className="measurement-label">{field.label}</span>
+                        <div className="measurement-input-group">
+                          <span className="measurement-input-label">Length</span>
+                          <input
+                            className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-center outline-none transition focus:border-[var(--accent)]"
+                            type="text"
+                            value={lenVal}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (field.key === 'sleeveLength') {
+                                setTopMeasurements({ ...topMeasurements, sleeveLengthLength: val, sleeveLength: val });
+                              } else if (field.key === 'sleeveRound') {
+                                setTopMeasurements({ ...topMeasurements, sleeveRoundLength: val });
+                              } else if (field.key === 'biceps') {
+                                setTopMeasurements({ ...topMeasurements, bicepsLength: val });
+                              } else if (field.key === 'armRound') {
+                                setTopMeasurements({ ...topMeasurements, armRoundLength: val });
+                              } else {
+                                setTopMeasurements({ ...topMeasurements, [`${field.key}Length`]: val });
+                              }
+                            }}
+                            placeholder="Length" inputMode="decimal"
+                          />
+                        </div>
+                        <div className="measurement-input-group">
+                          <span className="measurement-input-label">Round</span>
+                          <input
+                            className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-center outline-none transition focus:border-[var(--accent)]"
+                            type="text"
+                            value={rndVal}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (field.key === 'sleeveLength') {
+                                setTopMeasurements({ ...topMeasurements, sleeveLengthRound: val });
+                              } else if (field.key === 'sleeveRound') {
+                                setTopMeasurements({ ...topMeasurements, sleeveRoundRound: val, sleeveRound: val });
+                              } else if (field.key === 'biceps') {
+                                setTopMeasurements({ ...topMeasurements, bicepsRound: val, biceps: val });
+                              } else if (field.key === 'armRound') {
+                                setTopMeasurements({ ...topMeasurements, armRoundRound: val, armRound: val });
+                              } else {
+                                setTopMeasurements({ ...topMeasurements, [`${field.key}Round`]: val });
+                              }
+                            }}
+                            placeholder="Round" inputMode="decimal"
+                          />
+                        </div>
                       </div>
-                      <div className="measurement-input-group">
-                        <span className="measurement-input-label">Round</span>
-                        <input
-                          className="rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-2 text-center outline-none transition focus:border-[var(--accent)]"
-                          type="text"
-                          value={topMeasurements[`${field.key}Round`] || ''}
-                          onChange={(e) => setTopMeasurements({ ...topMeasurements, [`${field.key}Round`]: e.target.value })}
-                          placeholder="Round" inputMode="decimal"
-                        />
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
               )}

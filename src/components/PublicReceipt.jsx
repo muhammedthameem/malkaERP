@@ -323,7 +323,7 @@ function PublicReceipt({ billId, onClear }) {
             <img src="/logo-black.png" alt="Logo" className="w-28 h-32 mx-auto mb-4 object-contain" />
             <h3 className="uppercase tracking-tight !text-[24px] !font-extrabold">Malka</h3>
             <p className="text-[10px] font-medium">Your Complete Destination For Timeless Style</p>
-            <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 8606154015</p>
+            <p style={{ margin: '2px 0', fontSize: '12px' }}>Ph : 6238047081</p>
             <div className="mt-2 text-gray-500">
               <p className='!text-[10px]'>Order ID: {sale.saleId}</p>
               <p className='!text-[10px]'>{new Date(sale.timestamp).toDateString() === new Date().toDateString() ? new Date(sale.timestamp).toLocaleString() : new Date(sale.timestamp).toLocaleDateString()}</p>
