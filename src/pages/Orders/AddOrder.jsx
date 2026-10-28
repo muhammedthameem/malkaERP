@@ -4,6 +4,7 @@ import { formatDateDDMMYY, getIndianDate, DEFAULT_WORKFLOWS } from '../../utils/
 import CustomDatePicker from '../../components/CustomDatePicker'
 import supabase from '../../supabase'
 import { compressImage } from '../../utils/imageCompression'
+import SketchBoard, { hasSketch } from '../../components/SketchBoard'
 
 function AddOrderPage({ 
   themeStyle, setCurrentPage, showGlobalToast, 
@@ -188,6 +189,14 @@ function AddOrderPage({
       orderDate: getIndianDate(),
       deliveryDate: ''
     }])
+  }
+
+  // Pattern sketch saved on the client's measurement for this product (looked up live, not copied into the order)
+  const getProductSketch = (prodName) => {
+    if (!prodName || !clientName) return null;
+    const selectedClient = (clients || []).find(c => (c.name || '').toLowerCase().trim() === clientName.toLowerCase().trim());
+    const measure = selectedClient?.measurements?.find(m => (m.product || '').toLowerCase().trim() === prodName.toLowerCase().trim());
+    return hasSketch(measure?.sketch) ? measure.sketch : null;
   }
 
   const removeOrderItem = (index) => {
@@ -1512,12 +1521,22 @@ function AddOrderPage({
                       </div>
                     )}
                   </div>
-                  {item.measurementPhotoUrl && (
-                    <div className="col-span-1 md:col-span-2">
-                       <span className="mb-2 block text-sm font-medium text-[var(--text)]">Measurement Photo</span>
-                       <button type="button" onClick={() => setZoomedPhoto(item.measurementPhotoUrl)} className="block w-24 h-24 border border-[var(--border)] rounded-xl overflow-hidden shadow-sm transition hover:scale-105">
-                         <img src={item.measurementPhotoUrl} alt="Measurement" className="w-full h-full object-cover" />
-                       </button>
+                  {(item.measurementPhotoUrl || getProductSketch(item.product)) && (
+                    <div className="col-span-1 md:col-span-2 flex flex-wrap items-start gap-4">
+                      {item.measurementPhotoUrl && (
+                        <div>
+                          <span className="mb-2 block text-sm font-medium text-[var(--text)]">Measurement Photo</span>
+                          <button type="button" onClick={() => setZoomedPhoto(item.measurementPhotoUrl)} className="block w-24 h-24 border border-[var(--border)] rounded-xl overflow-hidden shadow-sm transition hover:scale-105">
+                            <img src={item.measurementPhotoUrl} alt="Measurement" className="w-full h-full object-cover" />
+                          </button>
+                        </div>
+                      )}
+                      {getProductSketch(item.product) && (
+                        <div>
+                          <span className="mb-2 block text-sm font-medium text-[var(--text)]">Pattern Sketch</span>
+                          <SketchBoard value={getProductSketch(item.product)} readOnly thumb className="!items-start" />
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
